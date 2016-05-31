@@ -85,11 +85,17 @@ public abstract class Explorer {
     }
     
     public String writeStats() {
-        return "Name: " + name + "\n" +
+    	String stats;
+        stats = "Name: " + name + "\n" +
                 "Starting position: " + startingPosition + "\n" +
                 "Actual position: " + actualPosition + "\n" +
                 "Gold: " + gold + "\n" +
                 "Strength: " + strength + "\n" +
-                "Life: " + life;
+                "Life: " + life + "\n" +
+                "Collected cretures: ";
+        for (int i = 0; i < defeatedCreatures.size(); i++) {
+			stats += "\n\t- " + defeatedCreatures.get(i).getName();
+		}
+        return stats;
     }
 }
