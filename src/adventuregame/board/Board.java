@@ -40,6 +40,10 @@ public class Board {
         setCards();
     }
     
+    public Field getField(int fieldNr) {
+    	return fields.get(fieldNr);
+    }
+    
     private void setFields() {
         fields = new ArrayList<>();
         //0
