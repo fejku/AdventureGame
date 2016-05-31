@@ -35,6 +35,8 @@ public abstract class Creature extends Card{
                 board.getDice().throwDice();
         System.out.println("Sila poszukiwacza po rzucie: " + explorerStrenght);
         if(explorerStrenght>foeStrenght) {
+            //Usunięcie karty z pola
+            board.getField(actExp.getActualPosition()).removeCardFromField(this);
             //Dodanie karty potwora do pokonanych
             explorers.getActualExplorer().addCreature(this);
             System.out.println("Poszukiwacz wygral!");
