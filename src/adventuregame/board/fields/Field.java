@@ -50,6 +50,10 @@ public abstract class Field implements IField {
         return cards;
     }
     
+    public void removeCardFromField(Card card) {
+    	cards.remove(card);
+    }
+    
     public boolean isCardOnField() {
         if (cards.size() > 0) {
             return true;
