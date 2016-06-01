@@ -61,4 +61,36 @@ public abstract class Field implements IField {
             return false;
         }
     }
+    
+    public void Action(Board board, Explorers explorers) {
+    	boolean meetOtherExplorer = false;
+    	Explorer actExplorer = explorers.getActualExplorer();
+    	List<Explorer> otherExplorersOnField = explorers.getOtherExplorersOnField(actExplorer.getActualPosition());
+    	
+    	if (otherExplorersOnField.size() > 0) {
+    		System.out.println("Wybierz akcję:\n1:Spotkanie z Poszukiwaczem\n2:Badaj obszar");
+    		int choice;
+    		//TODO: odczytanie wybranej akcji
+    		if (choice == 1)
+    			meetOtherExplorer = true;
+    	}
+    	
+    	Explorer otherExplorer;
+    	if (meetOtherExplorer) {
+    		if(otherExplorersOnField.size() > 1) {
+    			System.out.println("Wybierz z którym Poszukiwaczem chcesz się spotkać:");
+    			for (int i = 0; i < otherExplorersOnField.size(); i++) {
+    				System.out.println(i+ ": " + otherExplorersOnField.get(i).getName());
+    			}
+    			//TODO: Wybranie Poszukiwacza z listy
+    		} else {
+    			otherExplorer = otherExplorersOnField.get(0);
+    		}
+    		//TODO: Spotkanie z innym Poszukiwaczem
+    	} else {
+        	//TODO: Dociągnięcie odpowiedniej ilości kart i położenie na polu
+        	//TODO: Zastosowanie się do kart leżących na obszarze
+        	//TODO: Zastosowanie do polecenia znajdującego się na obszarze
+    	}
+    }
 }
