@@ -2,6 +2,7 @@ package adventuregame.board.fields;
 
 import adventuregame.board.Board;
 import adventuregame.cards.Card;
+import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,36 +63,40 @@ public abstract class Field {
         }
     }
     
-    public abstract void Action(Board board, Explorers explorers); 
-//{
+    public abstract void Action(Board board, Explorers explorers);
 //    	boolean meetOtherExplorer = false;
-//    	Explorer actExplorer = explorers.getActualExplorer();
-//    	List<Explorer> otherExplorersOnField = explorers.getOtherExplorersOnField(actExplorer.getActualPosition());
+//        
+//    	Explorer actualExplorer = explorers.getActualExplorer();
+//    	List<Explorer> otherExplorersOnField = explorers.getOtherExplorersOnField(actualExplorer.getActualPosition());
 //    	
 //    	if (otherExplorersOnField.size() > 0) {
-//    		System.out.println("Wybierz akcję:\n1:Spotkanie z Poszukiwaczem\n2:Badaj obszar");
-//    		int choice;
-//    		//TODO: odczytanie wybranej akcji
-////    		if (choice == 1)
-////    			meetOtherExplorer = true;
+//            System.out.println("Wybierz akcję:\n1:Spotkanie z Poszukiwaczem\n2:Badaj obszar");
+//            int choice = Integer.parseInt(System.console().readLine());
+//            if (choice == 1)
+//                meetOtherExplorer = true;
 //    	}
 //    	
-//    	Explorer otherExplorer;
 //    	if (meetOtherExplorer) {
-//    		if(otherExplorersOnField.size() > 1) {
-//    			System.out.println("Wybierz z którym Poszukiwaczem chcesz się spotkać:");
-//    			for (int i = 0; i < otherExplorersOnField.size(); i++) {
-//    				System.out.println(i+ ": " + otherExplorersOnField.get(i).getName());
-//    			}
-//    			//TODO: Wybranie Poszukiwacza z listy
-//    		} else {
-//    			otherExplorer = otherExplorersOnField.get(0);
-//    		}
-//    		//TODO: Spotkanie z innym Poszukiwaczem
+//     	Explorer otherExplorer;
+//           if(otherExplorersOnField.size() > 1) {
+//                System.out.println("Wybierz z którym Poszukiwaczem chcesz się spotkać:");
+//                for (int i = 0; i < otherExplorersOnField.size(); i++)
+//                    System.out.println(i+ ": " + otherExplorersOnField.get(i).getName());
+//                int choice = Integer.parseInt(System.console().readLine());
+//                otherExplorer = otherExplorersOnField.get(choice);
+//            } else
+//                otherExplorer = otherExplorersOnField.get(0);
+//            //TODO: Spotkanie z innym Poszukiwaczem
 //    	} else {
+//            //TODO: Sprawdzenie czy na polu leżą karty
+//            
+//            
+//            //FieldAction(board, explorers);
 //        	//TODO: Dociągnięcie odpowiedniej ilości kart i położenie na polu
 //        	//TODO: Zastosowanie się do kart leżących na obszarze
 //        	//TODO: Zastosowanie do polecenia znajdującego się na obszarze
 //    	}
 //    }
+    
+    //public abstract void FieldAction(Board board, Explorers explorers);
 }

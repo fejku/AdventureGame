@@ -19,9 +19,7 @@ public class Gospoda extends Field {
 
     @Override
     public void Action(Board board, Explorers explorers) {
-        int diceResult = board.getDice().throwDice();
-        
-        switch(diceResult) {
+        switch(board.getDice().throwDice()) {
             case 1: 
                     //Upiłeś się i zasnąłeś w kącie. Tracisz następną turę.
                     explorers.getActualExplorer().addLostTurn(1);

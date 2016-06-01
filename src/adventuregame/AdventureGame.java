@@ -27,8 +27,6 @@ public class AdventureGame {
         Explorers explorers = new Explorers();
         List<Integer> moves = new ArrayList<>();
         
-        Scanner s = new Scanner(System.in);
-        
         explorers.pickExplorers();
         do {
             if (explorers.getActualExplorer().isLosesTurn()) {
@@ -42,7 +40,7 @@ public class AdventureGame {
                 }
                 //Wykonaj wybór ruchu
                 System.out.print("Select move: ");
-                int selectedMove = s.nextInt();
+                int selectedMove = Integer.parseInt(System.console().readLine());
                 explorers.getActualExplorer().setActualPosition(moves.get(selectedMove));
                 //Karty na polu
                 if(b.isCardOnField(explorers.getActualExplorer().getActualPosition())) {

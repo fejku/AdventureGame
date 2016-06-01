@@ -79,11 +79,30 @@ public abstract class Explorer {
     }
     
     public void addLife() {
-        life++;
+        addLife(1);
+    }
+    
+    public void addLife(int lifeAmount) {
+        life += lifeAmount;
+    }
+    
+    public boolean renewLife(int lifeAmount) {
+        int tempLife = life + lifeAmount;
+        if (tempLife > 4)
+            return false;
+        else {
+            life = tempLife;
+            return true;
+        }
+        
     }
     
     public boolean subtractLife() {
-        life--;
+        return subtractLife(1);
+    }
+    
+    public boolean subtractLife(int lifeAmount) {
+        life -= lifeAmount;
         if (life>0)
             return false;
         else
