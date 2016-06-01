@@ -46,4 +46,14 @@ public class Explorers {
         else
             return true;
     }
+    
+    public List<Explorer> getOtherExplorersOnField(int fieldNr) {
+    	List<Explorer> otherExplorersOnField = new ArrayList<>();
+    	for (int i = 0; i < pickedExplorers.size(); i++) {
+			if ((pickedExplorers.get(i).getActualPosition() == fieldNr) 
+					&& (i != actualExplorer))
+				otherExplorersOnField.add(pickedExplorers.get(i));
+		}
+    	return otherExplorersOnField;
+    }
 }
