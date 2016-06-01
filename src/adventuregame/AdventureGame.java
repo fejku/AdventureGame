@@ -31,26 +31,29 @@ public class AdventureGame {
         
         explorers.pickExplorers();
         do {
-            
-            System.out.println(explorers.getActualExplorer().writeStats());
-            //Pokaż możliwe ruchy
-            moves = b.availableMoves(explorers.getActualExplorer().getActualPosition());
-            for (int i = 0; i < moves.size(); i++) {
-                System.out.println(i+". Available move: "+moves.get(i));
-            }
-            //Wykonaj wybór ruchu
-            System.out.print("Select move: ");
-            int selectedMove = s.nextInt();
-            explorers.getActualExplorer().setActualPosition(moves.get(selectedMove));
-            //Karty na polu
-            if(b.isCardOnField(explorers.getActualExplorer().getActualPosition())) {
-                //Akcja karty
-                //b.
+            if (explorers.getActualExplorer().isLosesTurn()) {
+                explorers.getActualExplorer().subLostTurn();
             } else {
-                //Akcja pola
-                b.fieldAction(explorers);
+                System.out.println(explorers.getActualExplorer().writeStats());
+                //Pokaż możliwe ruchy
+                moves = b.availableMoves(explorers.getActualExplorer().getActualPosition());
+                for (int i = 0; i < moves.size(); i++) {
+                    System.out.println(i+". Available move: "+moves.get(i));
+                }
+                //Wykonaj wybór ruchu
+                System.out.print("Select move: ");
+                int selectedMove = s.nextInt();
+                explorers.getActualExplorer().setActualPosition(moves.get(selectedMove));
+                //Karty na polu
+                if(b.isCardOnField(explorers.getActualExplorer().getActualPosition())) {
+                    //Akcja karty
+                    //b.
+                } else {
+                    //Akcja pola
+                    b.fieldAction(explorers);
+                }
+                System.out.println(explorers.getActualExplorer().writeStats());
             }
-            System.out.println(explorers.getActualExplorer().writeStats());
             //Next player
             explorers.nextExplorerTurn();
         } while (true);

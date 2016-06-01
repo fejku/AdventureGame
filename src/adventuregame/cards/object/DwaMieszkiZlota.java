@@ -1,6 +1,7 @@
-package adventuregame.cards;
+package adventuregame.cards.object;
 
 import adventuregame.board.Board;
+import adventuregame.cards.Card;
 import adventuregame.explorer.Explorers;
 
 /**

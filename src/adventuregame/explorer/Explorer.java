@@ -1,6 +1,6 @@
 package adventuregame.explorer;
 
-import adventuregame.cards.creature.Creature;
+import adventuregame.cards.enemy.Enemy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +13,18 @@ public abstract class Explorer {
     private int startingPosition;
     private int actualPosition;
     
+    private int lostTurn;
+    
     private int gold;
     private int strength;
     private int life;
     
-    private List<Creature> defeatedCreatures;
+    private List<Enemy> defeatedCreatures;
 
     public Explorer(int strength) {
-        gold = 0;
+        lostTurn = 0;
+        
+        gold = 1;
         life = 4;
         this.strength = strength;
         
@@ -55,6 +59,12 @@ public abstract class Explorer {
     public void addGold(int goldAmount) {
         gold += goldAmount;
     }
+    
+    public void subGold(int goldAmount) {
+        gold -= goldAmount;
+        if (gold < 0)
+            gold = 0;
+    }
 
     public int getStrength() {
         return strength;
@@ -80,7 +90,7 @@ public abstract class Explorer {
             return true;
     }
     
-    public void addCreature(Creature creature) {
+    public void addCreature(Enemy creature) {
         defeatedCreatures.add(creature);
     }
     
@@ -97,5 +107,20 @@ public abstract class Explorer {
 			stats += "\n\t- " + defeatedCreatures.get(i).getName();
 		}
         return stats;
+    }
+    
+    public void addLostTurn(int amount) {
+        lostTurn += amount;
+    }
+    
+    public void subLostTurn() {
+        lostTurn--;
+    }
+    
+    public boolean isLosesTurn() {
+        if (lostTurn > 0)
+            return true;
+        else
+            return false;
     }
 }
