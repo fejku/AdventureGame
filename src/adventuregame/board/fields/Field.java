@@ -13,15 +13,13 @@ import java.util.List;
  */
 public abstract class Field {
     
-    public static int LEFT = 1, RIGHT = 2, TOP = 3, BOTTOM = 4;
-    public static int FIELDS_OUTER_QUANTITY_BOTTOM = 0, FIELDS_OUTER_QUANTITY_TOP = 24;
-    public static int GOSPODA = 0, MIASTO = 6, SKALY = 10, KAPLICZKA = 12, STRAZNIK = 14, 
+    public static final int LEFT = 1, RIGHT = 2, TOP = 3, BOTTOM = 4;
+    public static final int FIELDS_OUTER_QUANTITY_BOTTOM = 0, FIELDS_OUTER_QUANTITY_TOP = 24;
+    public static final int GOSPODA = 0, MIASTO = 6, SKALY = 10, KAPLICZKA = 12, STRAZNIK = 14, 
             CMENTARZ = 16, WIOSKA = 18, LAS = 20, RUINY = 22;
     
-    private String name;
-    
-    private int fieldNr;
-    private int[] neighbors;
+    private final String name;    
+    private final int[] neighbors;
     
     private List<Card> cards;
    
@@ -35,15 +33,11 @@ public abstract class Field {
         return name;
     }
     
-    protected void setName(String name) {
-        this.name = name;
-    }
-    
     public int getNeighbor(int location) {
         return neighbors[location];
     }
     
-    public void setNeighbor(int location, int neighbor) {
+    public void initNeighbor(int location, int neighbor) {
         neighbors[location] = neighbor;
     }    
     

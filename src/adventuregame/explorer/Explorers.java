@@ -8,23 +8,25 @@ import java.util.List;
  * @author Fake
  */
 public class Explorers {
-    private List<Explorer> availableExplorers;
+    private final List<Explorer> allExplorers;
     private List<Explorer> pickedExplorers;
 
     private int actualExplorer;
     
     public Explorers() {
-        setExplorers();
+        this.allExplorers = initExplorers();
     }
     
-    public void setExplorers() {
-        availableExplorers = new ArrayList<>();
-        availableExplorers.add(new Filozof());
-        availableExplorers.add(new Wojownik());
+    public List<Explorer> initExplorers() {
+        List<Explorer> explorers = new ArrayList<>();
+        explorers.add(new Filozof());
+        explorers.add(new Wojownik());
+        return explorers;
     }
     
     public void pickExplorers() {
-        pickedExplorers = availableExplorers;
+        //TODO: Zmienić to na losowanie i wybranie Poszukiwacza
+        pickedExplorers = allExplorers;
         actualExplorer = 0;
     }
     

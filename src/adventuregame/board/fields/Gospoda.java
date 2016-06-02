@@ -22,7 +22,7 @@ public class Gospoda extends Field {
         switch(board.getDice().throwDice()) {
             case 1: 
                     //Upiłeś się i zasnąłeś w kącie. Tracisz następną turę.
-                    explorers.getActualExplorer().addLostTurn(1);
+                    explorers.getActualExplorer().loseTurn();
                     break;
             case 2:
                     //Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła: 3)
@@ -30,16 +30,16 @@ public class Gospoda extends Field {
                     int explorerStrength = explorers.getActualExplorer().getStrength() + board.getDice().throwDice();
                     if (enemyStrength > explorerStrength) {
                         //TODO: obrona
-                        explorers.getActualExplorer().subtractLife();
+                        explorers.getActualExplorer().loseLife();
                     }
                     break;
             case 3:
                     //Grałeś w karty i przegrałeś 1 sztukę złota
-                    explorers.getActualExplorer().subGold(1);
+                    explorers.getActualExplorer().loseGold(1);
                     break;
             case 4:
                     //Grałeś w karty i wygrałeś sztukę złota
-                    explorers.getActualExplorer().addGold(1);
+                    explorers.getActualExplorer().gainGold(1);
                     break;
             case 5:
                     //Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.

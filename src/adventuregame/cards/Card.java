@@ -8,7 +8,7 @@ import adventuregame.explorer.Explorers;
  * @author Fake
  */
 public abstract class Card {
-    private String name;
+    private final String name;
     
     public Card(String name) {
         this.name = name;

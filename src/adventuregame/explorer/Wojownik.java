@@ -14,9 +14,7 @@ import adventuregame.board.fields.Field;
 public class Wojownik extends Explorer{
 
     public Wojownik() {
-        super(5);
-        setName("Wojownik");
-        setStartingPosition(Field.GOSPODA);
+        super("Wojownik", 5, Field.GOSPODA, ExplorerCharacter.NEUTRALNY);
     }
     
 }

@@ -16,7 +16,7 @@ public class MieszekZlota extends Card{
 
     @Override
     public void Action(Board board, Explorers explorers) {
-        explorers.getActualExplorer().addGold(1);
+        explorers.getActualExplorer().gainGold(1);
     }
     
 }

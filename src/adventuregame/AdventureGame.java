@@ -30,7 +30,7 @@ public class AdventureGame {
         explorers.pickExplorers();
         do {
             if (explorers.getActualExplorer().isLosesTurn()) {
-                explorers.getActualExplorer().subLostTurn();
+                explorers.getActualExplorer().passLoseTurn();
             } else {
                 System.out.println(explorers.getActualExplorer().writeStats());
                 //Pokaż możliwe ruchy

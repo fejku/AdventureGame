@@ -14,9 +14,7 @@ import adventuregame.board.fields.Field;
 public class Filozof extends Explorer{
 
     public Filozof() {
-        super(2);
-        setName("Filozof");
-        setStartingPosition(Field.GOSPODA);
+        super("Filozof", 2, Field.GOSPODA, ExplorerCharacter.NEUTRALNY);
     }
     
 }

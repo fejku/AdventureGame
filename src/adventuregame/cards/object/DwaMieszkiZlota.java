@@ -16,7 +16,7 @@ public class DwaMieszkiZlota extends Card {
     
     @Override
     public void Action(Board board, Explorers explorers) {
-        explorers.getActualExplorer().addGold(2);
+        explorers.getActualExplorer().gainGold(2);
     }
     
 }

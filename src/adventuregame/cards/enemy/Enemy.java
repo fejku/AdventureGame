@@ -16,7 +16,7 @@ import adventuregame.explorer.Explorers;
  */
 public abstract class Enemy extends Card{
     
-    private int strength;
+    private final int strength;
 
     public Enemy(String name, int strength) {
         super(name);
@@ -50,7 +50,7 @@ public abstract class Enemy extends Card{
         else {
             //Strata punktu wytrzymałości
             System.out.println("Przeciwnik wygral :(");
-            if (actExp.subtractLife())
+            if (actExp.loseLife())
                 //Usun gracza
                 if (explorers.removeActualExplorer())
                     //koniec gry albo wybranie kolejnej postaci

@@ -30,8 +30,8 @@ public class Miasto extends Field{
                     //Odzyskujesz do 2 punktów życia płacąc za każdy z nich 1 sztukę złota
                     System.out.print("Ile życia chcesz odzyskać? (1-2):");
                     int amount = Integer.parseInt(System.console().readLine());
-                    explorers.getActualExplorer().renewLife(amount);
-                    explorers.getActualExplorer().subGold(amount);
+                    explorers.getActualExplorer().regainLife(amount);
+                    explorers.getActualExplorer().loseGold(amount);
                     break;
         }
         switch (board.getDice().throwDice()) {

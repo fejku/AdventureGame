@@ -16,7 +16,6 @@ import adventuregame.board.fields.Wioska;
 import adventuregame.board.fields.Wzgorza;
 import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Waz;
-import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
 import java.util.ArrayList;
@@ -27,62 +26,63 @@ import java.util.List;
  * @author Fake
  */
 public class Board {
-    private List<Field> fields;
-    private List<Card> cards;
-    private Dice dice;
+    private final List<Field> fields;
+    private final List<Card> cards;
+    private final Dice dice;
             
     public Board(Dice dice) {
         this.dice = dice;
-        setFields();
-        setNeighbors();
-        
-        setCards();
+        this.fields = initFields();
+        initNeighbors();     
+        this.cards = initCards();
     }
     
     public Field getField(int fieldNr) {
     	return fields.get(fieldNr);
     }
     
-    private void setFields() {
-        fields = new ArrayList<>();
-        //0
+    private List<Field> initFields() {
+        List<Field> fields = new ArrayList<>();
+        
         fields.add(new Gospoda());
         fields.add(new Rowniny());
         fields.add(new Puszcza());
         fields.add(new Rowniny());
         fields.add(new Wzgorza());
         fields.add(new Pola());
-        //6
+        
         fields.add(new Miasto());
         fields.add(new Pola());
         fields.add(new Puszcza());
         fields.add(new Rowniny());
         fields.add(new Skaly());
         fields.add(new Pola());
-        //12
+        
         fields.add(new Kapliczka());
         fields.add(new Wzgorza());
         fields.add(new Straznik());
         fields.add(new Puszcza());
         fields.add(new Cmentarz());
         fields.add(new Pola());
-        //18
+        
         fields.add(new Wioska());
         fields.add(new Pola());
         fields.add(new Las());
         fields.add(new Rowniny());
         fields.add(new Ruiny());
         fields.add(new Pola());
+
+        return fields;
     }
     
-    private void setNeighbors() {
+    private void initNeighbors() {
         int neighbor;
         //Set right Neighbor
         for (int i = Field.FIELDS_OUTER_QUANTITY_BOTTOM; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++) {
             neighbor = i + 1;
             if (neighbor == Field.FIELDS_OUTER_QUANTITY_TOP)
                 neighbor = Field.FIELDS_OUTER_QUANTITY_BOTTOM;
-            fields.get(i).setNeighbor(Field.RIGHT, neighbor);
+            fields.get(i).initNeighbor(Field.RIGHT, neighbor);
         }
         
         //Set left Neighbor
@@ -90,7 +90,7 @@ public class Board {
             neighbor = i - 1;
             if (neighbor < Field.FIELDS_OUTER_QUANTITY_BOTTOM)
                 neighbor = Field.FIELDS_OUTER_QUANTITY_TOP - 1;
-            fields.get(i).setNeighbor(Field.LEFT, neighbor);
+            fields.get(i).initNeighbor(Field.LEFT, neighbor);
         }        
     }
     
@@ -124,11 +124,12 @@ public class Board {
         return fields.get(fieldNr).isCardOnField();
     }
     
-    public void setCards() {   
-        cards = new ArrayList<>();
+    public List<Card> initCards() {   
+        List<Card> cards = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             cards.add(new Waz());
         }
+        return cards;
     }
     
     public Card getCardFromDeck() {
