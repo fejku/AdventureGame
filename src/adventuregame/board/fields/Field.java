@@ -4,6 +4,8 @@ import adventuregame.board.Board;
 import adventuregame.cards.Card;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
+import adventuregame.explorer.FightResult;
+import adventuregame.explorer.FightType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,16 @@ public abstract class Field {
         }
     }
     
-    public abstract void Action(Board board, Explorers explorers);
+    public void fightWithoutCard(Board board, Explorer explorer, FightType type, int amount) {
+        FightResult fightResult;
+        
+        fightResult = explorer.fight(board, type, amount);
+        if (fightResult == FightResult.LOSE) {
+            explorer.loseLife();
+        }
+    }
+    
+    public abstract void action(Board board, Explorers explorers);
 //    	boolean meetOtherExplorer = false;
 //        
 //    	Explorer actualExplorer = explorers.getActualExplorer();

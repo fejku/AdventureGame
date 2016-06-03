@@ -14,7 +14,7 @@ public abstract class FieldGetCard extends Field{
     }
 
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void action(Board board, Explorers explorers) {
         getCards().add(board.getCardFromDeck());
         for (int i = 0; i < getCards().size(); i++) {
             getCards().get(i).Action(board, explorers);

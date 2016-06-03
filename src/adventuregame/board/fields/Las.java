@@ -19,7 +19,7 @@ public class Las extends Field{
     }
 
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void action(Board board, Explorers explorers) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

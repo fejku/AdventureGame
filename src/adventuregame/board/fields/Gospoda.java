@@ -7,6 +7,7 @@ package adventuregame.board.fields;
 
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorers;
+import adventuregame.explorer.FightType;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Gospoda extends Field {
     }
 
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void action(Board board, Explorers explorers) {
         switch(board.getDice().throwDice()) {
             case 1: 
                     //Upiłeś się i zasnąłeś w kącie. Tracisz następną turę.
@@ -26,20 +27,15 @@ public class Gospoda extends Field {
                     break;
             case 2:
                     //Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła: 3)
-                    int enemyStrength = 3 + board.getDice().throwDice();
-                    int explorerStrength = explorers.getActualExplorer().getStrength() + board.getDice().throwDice();
-                    if (enemyStrength > explorerStrength) {
-                        //TODO: obrona
-                        explorers.getActualExplorer().loseLife();
-                    }
+                    fightWithoutCard(board, explorers.getActualExplorer(), FightType.STRENGTH, 3);
                     break;
             case 3:
                     //Grałeś w karty i przegrałeś 1 sztukę złota
-                    explorers.getActualExplorer().loseGold(1);
+                    explorers.getActualExplorer().loseGold();
                     break;
             case 4:
                     //Grałeś w karty i wygrałeś sztukę złota
-                    explorers.getActualExplorer().gainGold(1);
+                    explorers.getActualExplorer().gainGold();
                     break;
             case 5:
                     //Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.

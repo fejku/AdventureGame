@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package adventuregame.board.fields;
 
 import adventuregame.board.Board;
@@ -20,7 +15,7 @@ public class Cmentarz extends Field{
     }
 
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void action(Board board, Explorers explorers) {
         Explorer actualExplorer = explorers.getActualExplorer();
         if (actualExplorer.getCharacter() == ExplorerCharacter.DOBRY) {
             actualExplorer.loseLife();

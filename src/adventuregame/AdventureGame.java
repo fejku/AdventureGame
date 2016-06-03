@@ -1,14 +1,12 @@
 package adventuregame;
 
-import adventuregame.explorer.Explorer;
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorers;
-import adventuregame.explorer.Filozof;
+import adventuregame.utils.ConsoleDialog;
 import adventuregame.utils.Dice;
+import adventuregame.utils.IDialog;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -20,10 +18,10 @@ public class AdventureGame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        IDialog dialog = new ConsoleDialog();
         Dice dice = new Dice();
-        Board b = new Board(dice);
-        //Explorer p = new Filozof();
+        
+        Board b = new Board(dialog, dice);
         Explorers explorers = new Explorers();
         List<Integer> moves = new ArrayList<>();
         
@@ -32,15 +30,14 @@ public class AdventureGame {
             if (explorers.getActualExplorer().isLosesTurn()) {
                 explorers.getActualExplorer().passLoseTurn();
             } else {
-                System.out.println(explorers.getActualExplorer().writeStats());
+                dialog.message(explorers.getActualExplorer().writeStats());
                 //Pokaż możliwe ruchy
                 moves = b.availableMoves(explorers.getActualExplorer().getActualPosition());
                 for (int i = 0; i < moves.size(); i++) {
-                    System.out.println(i+". Available move: "+moves.get(i));
+                    dialog.message(i + ". " + moves.get(i));
                 }
-                //Wykonaj wybór ruchu
-                System.out.print("Select move: ");
-                int selectedMove = Integer.parseInt(System.console().readLine());
+                //Wykonaj wybór ruchu              
+                int selectedMove = dialog.choose(moves.size());
                 explorers.getActualExplorer().setActualPosition(moves.get(selectedMove));
                 //Karty na polu
                 if(b.isCardOnField(explorers.getActualExplorer().getActualPosition())) {
@@ -50,7 +47,7 @@ public class AdventureGame {
                     //Akcja pola
                     b.fieldAction(explorers);
                 }
-                System.out.println(explorers.getActualExplorer().writeStats());
+                dialog.message(explorers.getActualExplorer().writeStats());
             }
             //Next player
             explorers.nextExplorerTurn();

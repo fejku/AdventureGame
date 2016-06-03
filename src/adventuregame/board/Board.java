@@ -18,6 +18,7 @@ import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Waz;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
+import adventuregame.utils.IDialog;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class Board {
     private final List<Field> fields;
     private final List<Card> cards;
     private final Dice dice;
+    private final IDialog dialog;
             
-    public Board(Dice dice) {
+    public Board(IDialog dialog, Dice dice) {
+        this.dialog = dialog;
         this.dice = dice;
         this.fields = initFields();
         initNeighbors();     
@@ -97,7 +100,7 @@ public class Board {
     public List<Integer> availableMoves(int actualPosition) {
         List<Integer> moves = new ArrayList<>();
         int neighbour;
-        int diceResult = 5;//dice.throwDice();
+        int diceResult = 6;//dice.throwDice();
         
         //Left
         neighbour = fields.get(actualPosition).getNeighbor(Field.LEFT);
@@ -117,7 +120,7 @@ public class Board {
     }
     
     public void fieldAction(Explorers explorers) {
-        fields.get(explorers.getActualExplorer().getActualPosition()).Action(this, explorers);
+        fields.get(explorers.getActualExplorer().getActualPosition()).action(this, explorers);
     }
     
     public boolean isCardOnField(int fieldNr) {
@@ -141,5 +144,9 @@ public class Board {
     
     public Dice getDice() {
         return dice;
+    }
+    
+    public IDialog getDialog() {
+        return dialog;
     }
 }
