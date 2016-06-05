@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package adventuregame.utils;
 
 import java.util.Scanner;
@@ -24,9 +19,9 @@ public class ConsoleDialog implements IDialog {
     public int choose(String message, int nrChoices) {
         int choice;
         do {
-            System.out.print(message + " (1-" + nrChoices + "): ");
+            System.out.print(message + " (0-" + (nrChoices-1) + "): ");
             choice = input.nextInt();
-        } while ((choice < 1) || (choice > nrChoices) && (nrChoices > 0));
+        } while ((choice < 0) || (choice > nrChoices) && (nrChoices >= 0));
         return choice;
     }
 
@@ -39,8 +34,20 @@ public class ConsoleDialog implements IDialog {
     public int chooseOption(String message, String[] choices) {
         message(message);
         for (int i = 0; i < choices.length; i++) {
-            message((i+1) + ". " + choices[i]);
+            message((i) + ". " + choices[i]);
         }
         return choose(choices.length);
+    }
+
+    @Override
+    public boolean chooseYesNo(String message) {
+        message(message);
+        message("0. Tak");
+        message("1. Nie");
+        int choice = choose(2);
+        if (choice == 0) 
+            return true;
+        else
+            return false;
     }
 }

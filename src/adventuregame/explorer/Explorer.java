@@ -3,6 +3,10 @@ package adventuregame.explorer;
 import adventuregame.board.Board;
 import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Enemy;
+import adventuregame.cards.enemy.Waz;
+import adventuregame.cards.object.DwaMieszkiZlota;
+import adventuregame.cards.object.MieszekZlota;
+import adventuregame.cards.spells.Spell;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +20,9 @@ public abstract class Explorer {
   
     private int actualPosition;    
     private int gold;
+    private final int baseStrength;
     private int strength;
+    private final int baseCraft;
     private int craft;
     private int life;
     private ExplorerCharacter character;
@@ -25,26 +31,38 @@ public abstract class Explorer {
     
     private List<Card> items;
     private List<Enemy> defeatedCreatures;
+    private List<Spell> spells;
 
-    public Explorer(String name, int strength, int craft, int startingPosition, ExplorerCharacter character) {
+    public Explorer(String name, int baseStrength, int baseCraft, 
+            int startingPosition, ExplorerCharacter character) {
         this.name = name;
         this.startingPosition = startingPosition;
         
         gold = 1;
         life = 4;
-        this.strength = strength;
-        this.craft = craft;
+        this.baseStrength = baseStrength;
+        strength = baseStrength;
+        this.baseCraft = baseCraft;
+        craft = baseCraft;
         
         actualPosition = startingPosition;
         loseTurn = 0;
         
         defeatedCreatures = new ArrayList<>();
+        items = new ArrayList<>();
+        spells = new ArrayList<>();
+        test();
     }
-
+public void test() {
+    items.add(new Waz());
+    items.add(new MieszekZlota());
+    items.add(new DwaMieszkiZlota());
+}
+    //<editor-fold defaultstate="collapsed" desc="Getters and setters">
     public String getName() {
         return name;
     }
-    
+
     public int getStartingPosition() {
         return startingPosition;
     }
@@ -65,6 +83,40 @@ public abstract class Explorer {
         this.gold = gold;
     }
     
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getBaseStrength() {
+        return baseStrength;
+    }
+    
+    public int getCraft() {
+        return craft;
+    }
+    
+    public int getBaseCraft() {
+        return baseCraft;
+    }
+    
+    public int getLife() {
+        return life;
+    }
+    
+    public ExplorerCharacter getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(ExplorerCharacter character) {
+        this.character = character;
+    }
+    
+    public List<Card> getItems() {
+        return items;
+    }    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Gain">
     public void gainGold() {
         gainGold(1);
     }
@@ -73,34 +125,20 @@ public abstract class Explorer {
         gold += goldAmount;
     }
     
-    public void loseGold() {
-        loseGold(1);
+    public void gainStrength() {
+        gainStrength(1);
+    }  
+    
+    public void gainStrength(int amount) {
+        strength += amount;
     }
     
-    public void loseGold(int goldAmount) {
-        gold -= goldAmount;
-        if (gold < 0)
-            gold = 0;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int getCraft() {
-        return craft;
-    }
-
-    public void setCraft(int craft) {
-        this.craft = craft;
-    }
+    public void gainCraft() {
+        gainCraft(1);
+    }  
     
-    public int getLife() {
-        return life;
+    public void gainCraft(int amount) {
+        craft += amount;
     }
     
     public void gainLife() {
@@ -110,6 +148,57 @@ public abstract class Explorer {
     public void gainLife(int lifeAmount) {
         life += lifeAmount;
     }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Lose">
+    public void loseGold() {
+        loseGold(1);
+    }
+    
+    public void loseGold(int goldAmount) {
+        gold -= goldAmount;
+        if (gold < 0)
+            gold = 0;
+    }
+    
+    public void loseStrength() {
+        loseStrength(1);
+    }
+    
+    public void loseStrength(int amount) {
+        if ((strength - amount) >= baseStrength)
+            strength -= amount;
+    }
+    
+    public void loseCraft() {
+        loseCraft(1);
+    }
+    
+    public void loseCraft(int amount) {
+        if ((craft - amount) >= baseCraft)
+            craft -= amount;
+    }
+    
+    public boolean loseLife() {
+        return loseLife(1);
+    }
+    
+    public boolean loseLife(int lifeAmount) {
+        life -= lifeAmount;
+        if (life>0)
+            return false;
+        else
+            return true;
+    }
+    
+    public void loseTurn() {
+        loseTurn(1);
+    }
+    
+    public void loseTurn(int turnAmount) {
+        loseTurn += turnAmount;
+    }    
+    //</editor-fold>
     
     /**
      * Poszukiwacz odzyskuje 1 punkt Wytrzymałości
@@ -130,28 +219,8 @@ public abstract class Explorer {
         }        
     }
     
-    public boolean loseLife() {
-        return loseLife(1);
-    }
-    
-    public boolean loseLife(int lifeAmount) {
-        life -= lifeAmount;
-        if (life>0)
-            return false;
-        else
-            return true;
-    }
-    
     public void addCreature(Enemy creature) {
         defeatedCreatures.add(creature);
-    }
-
-    public ExplorerCharacter getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(ExplorerCharacter character) {
-        this.character = character;
     }
       
     public String writeStats() {
@@ -167,14 +236,6 @@ public abstract class Explorer {
 			stats += "\n\t- " + defeatedCreatures.get(i).getName();
 		}
         return stats;
-    }
-    
-    public void loseTurn() {
-        loseTurn(1);
-    }
-    
-    public void loseTurn(int turnAmount) {
-        loseTurn += turnAmount;
     }
     
     public void passLoseTurn() {
@@ -223,8 +284,31 @@ public abstract class Explorer {
                 return FightResult.TIE;
         }
     }
-
-    public List<Card> getItems() {
-        return items;
+    
+    public void removeItem(int itemNr) {
+        items.remove(itemNr);
+    }
+    
+    public void changeIntoToad() {
+        
+    }
+    
+    public boolean isAnotherSpellAvailable() {
+        if ((craft == 3) && (spells.size() == 0))
+            return true;
+        else if (((craft > 3) && (craft < 6)) && (spells.size() < 2))
+            return true;
+        else if ((craft > 5) && (spells.size() < 3))
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * 
+     */
+    public void gainSpell(Board board) {
+        if (isAnotherSpellAvailable())
+            spells.add(board.getSpellFromDeck());
     }
 }

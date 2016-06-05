@@ -14,4 +14,5 @@ public interface IDialog {
     public int choose(int nrChoices);
     public int choose(String message, int nrChoices);
     public int chooseOption(String message, String[] choices);
+    public boolean chooseYesNo(String message);
 }

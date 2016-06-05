@@ -16,6 +16,7 @@ import adventuregame.board.fields.Wioska;
 import adventuregame.board.fields.Wzgorza;
 import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Waz;
+import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
 import adventuregame.utils.IDialog;
@@ -28,7 +29,8 @@ import java.util.List;
  */
 public class Board {
     private final List<Field> fields;
-    private final List<Card> cards;
+    private List<Card> cards;
+    private List<Spell> spells;
     private final Dice dice;
     private final IDialog dialog;
             
@@ -38,6 +40,7 @@ public class Board {
         this.fields = initFields();
         initNeighbors();     
         this.cards = initCards();
+        this.spells = initSpells();
     }
     
     public Field getField(int fieldNr) {
@@ -148,5 +151,16 @@ public class Board {
     
     public IDialog getDialog() {
         return dialog;
+    }
+    
+    public List<Spell> initSpells() {
+        List<Spell> spells = new ArrayList<>();
+        return spells;
+    }
+    
+    public Spell getSpellFromDeck() {
+        Spell spell = spells.get(0);
+        spells.remove(0);
+        return spell;
     }
 }

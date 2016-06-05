@@ -10,7 +10,7 @@ import adventuregame.explorer.Explorers;
  */
 public class DwaMieszkiZlota extends Card {
 
-    public DwaMieszkiZlota(String name) {
+    public DwaMieszkiZlota() {
         super("Dwa mieszki złota");
     }
     

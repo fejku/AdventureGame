@@ -34,7 +34,7 @@ public class AdventureGame {
                 //Pokaż możliwe ruchy
                 moves = b.availableMoves(explorers.getActualExplorer().getActualPosition());
                 for (int i = 0; i < moves.size(); i++) {
-                    dialog.message(i + ". " + moves.get(i));
+                    dialog.message(i + ". " + b.getField(moves.get(i)).getName() + " (" + moves.get(i) + ")");
                 }
                 //Wykonaj wybór ruchu              
                 int selectedMove = dialog.choose(moves.size());
