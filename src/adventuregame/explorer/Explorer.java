@@ -9,6 +9,7 @@ import adventuregame.cards.object.MieszekZlota;
 import adventuregame.cards.spells.Spell;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -28,6 +29,7 @@ public abstract class Explorer {
     private ExplorerCharacter character;
   
     private int loseTurn;
+    private Set<Integer> nextMoves;
     
     private List<Card> items;
     private List<Enemy> defeatedCreatures;
@@ -47,6 +49,7 @@ public abstract class Explorer {
         
         actualPosition = startingPosition;
         loseTurn = 0;
+        nextMoves = new List<Integer>();
         
         defeatedCreatures = new ArrayList<>();
         items = new ArrayList<>();

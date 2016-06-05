@@ -17,6 +17,7 @@ import adventuregame.board.fields.Wzgorza;
 import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Waz;
 import adventuregame.cards.spells.Spell;
+import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
 import adventuregame.utils.IDialog;
@@ -100,9 +101,12 @@ public class Board {
         }        
     }
     
-    public List<Integer> availableMoves(int actualPosition) {
+    public List<Integer> availableMoves(Explorer explorer) {
         List<Integer> moves = new ArrayList<>();
         int neighbour;
+        int actualPosition = explorer.getActualPosition();
+        
+        if (explorer.getNextMoves().size == 0) {
         int diceResult = 6;//dice.throwDice();
         
         //Left
@@ -118,6 +122,7 @@ public class Board {
             neighbour = fields.get(neighbour).getNeighbor(Field.RIGHT);
         }
         moves.add(neighbour);
+        } else {}
         
         return moves;
     }

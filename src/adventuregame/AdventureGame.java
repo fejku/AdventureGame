@@ -32,7 +32,7 @@ public class AdventureGame {
             } else {
                 dialog.message(explorers.getActualExplorer().writeStats());
                 //Pokaż możliwe ruchy
-                moves = b.availableMoves(explorers.getActualExplorer().getActualPosition());
+                moves = b.availableMoves(explorers.getActualExplorer());
                 for (int i = 0; i < moves.size(); i++) {
                     dialog.message(i + ". " + b.getField(moves.get(i)).getName() + " (" + moves.get(i) + ")");
                 }

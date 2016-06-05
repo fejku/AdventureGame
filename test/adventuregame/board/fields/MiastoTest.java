@@ -8,6 +8,7 @@ package adventuregame.board.fields;
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
+import adventuregame.explorer.Filozof;
 import adventuregame.utils.IDialog;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,13 +62,11 @@ public class MiastoTest {
     @Test
     public void testValidateCyrulik() {
         System.out.println("validateCyrulik");
-        Explorer explorer = null;
+        Explorer explorer = new Filozof();
         Miasto instance = new Miasto();
         boolean expResult = false;
         boolean result = instance.validateCyrulik(explorer);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
