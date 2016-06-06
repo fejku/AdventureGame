@@ -85,17 +85,17 @@ public class Board {
     private void initNeighbors() {
         int neighbor;
         //Set right Neighbor
-        for (int i = Field.FIELDS_OUTER_QUANTITY_BOTTOM; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++) {
+        for (int i = 0; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++) {
             neighbor = i + 1;
             if (neighbor == Field.FIELDS_OUTER_QUANTITY_TOP)
-                neighbor = Field.FIELDS_OUTER_QUANTITY_BOTTOM;
+                neighbor = 0;
             fields.get(i).initNeighbor(Field.RIGHT, neighbor);
         }
         
         //Set left Neighbor
-        for (int i = Field.FIELDS_OUTER_QUANTITY_BOTTOM; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++) {
+        for (int i = 0; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++) {
             neighbor = i - 1;
-            if (neighbor < Field.FIELDS_OUTER_QUANTITY_BOTTOM)
+            if (neighbor < 0)
                 neighbor = Field.FIELDS_OUTER_QUANTITY_TOP - 1;
             fields.get(i).initNeighbor(Field.LEFT, neighbor);
         }        
@@ -106,7 +106,7 @@ public class Board {
         int neighbour;
         int actualPosition = explorer.getActualPosition();
         
-        if (explorer.getNextMoves().size == 0) {
+        if (explorer.getNextMoves().size() == 0) {
         int diceResult = 6;//dice.throwDice();
         
         //Left
@@ -122,7 +122,7 @@ public class Board {
             neighbour = fields.get(neighbour).getNeighbor(Field.RIGHT);
         }
         moves.add(neighbour);
-        } else {}
+        } else {moves.addAll(explorer.getNextMoves());}
         
         return moves;
     }

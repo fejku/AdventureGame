@@ -1,13 +1,17 @@
 package adventuregame.explorer;
 
 import adventuregame.board.Board;
+import adventuregame.board.fields.Field;
+import adventuregame.board.fields.FieldType;
 import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Enemy;
 import adventuregame.cards.enemy.Waz;
 import adventuregame.cards.object.DwaMieszkiZlota;
 import adventuregame.cards.object.MieszekZlota;
 import adventuregame.cards.spells.Spell;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -49,7 +53,7 @@ public abstract class Explorer {
         
         actualPosition = startingPosition;
         loseTurn = 0;
-        nextMoves = new List<Integer>();
+        nextMoves = new HashSet<Integer>();
         
         defeatedCreatures = new ArrayList<>();
         items = new ArrayList<>();
@@ -313,5 +317,31 @@ public void test() {
     public void gainSpell(Board board) {
         if (isAnotherSpellAvailable())
             spells.add(board.getSpellFromDeck());
+    }
+    
+    public void addNextMove(int fieldNr) {
+        nextMoves.add(fieldNr);
+    }
+    
+    public void addNextMove(FieldType fieldType) {
+
+        switch(fieldType) {
+            case OUTER:
+                for (int i = 0; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++)
+                    nextMoves.add(i);
+                break;
+            case MIDDLE:
+                for (int i = Field.FIELDS_OUTER_QUANTITY_TOP; i < Field.FIELDS_MIDDLE_QUANTITY_TOP; i++)
+                    nextMoves.add(i);
+                break;
+            case INNER:
+                for (int i = Field.FIELDS_MIDDLE_QUANTITY_TOP; i < Field.FIELDS_INNER_QUANTITY_TOP; i++)
+                    nextMoves.add(i);
+                break;
+        }        
+    }
+    
+    public Set<Integer> getNextMoves() {
+        return nextMoves;
     }
 }

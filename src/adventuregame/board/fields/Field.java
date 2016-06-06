@@ -16,9 +16,10 @@ import java.util.List;
 public abstract class Field {
     
     public static final int LEFT = 1, RIGHT = 2, TOP = 3, BOTTOM = 4;
-    public static final int FIELDS_OUTER_QUANTITY_BOTTOM = 0, FIELDS_OUTER_QUANTITY_TOP = 24;
+    public static final int FIELDS_OUTER_QUANTITY_TOP = 24, FIELDS_MIDDLE_QUANTITY_TOP = 40, FIELDS_INNER_QUANTITY_TOP = 48;
     public static final int GOSPODA = 0, MIASTO = 6, SKALY = 10, KAPLICZKA = 12, STRAZNIK = 14, 
-            CMENTARZ = 16, WIOSKA = 18, LAS = 20, RUINY = 22;
+            CMENTARZ = 16, WIOSKA = 18, LAS = 20, RUINY = 22,
+            SWIATYNIA = 24;
     
     private final String name;    
     private final int[] neighbors;

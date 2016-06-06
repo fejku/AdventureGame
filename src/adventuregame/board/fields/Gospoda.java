@@ -39,11 +39,11 @@ public class Gospoda extends Field {
                     break;
             case 5:
                     //Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.
-                    //TODO
+                    explorers.getActualExplorer().addNextMove(FieldType.OUTER);
                     break;
             case 6:
                     //Przewoźnik ofiaruje ci przeprawę do Świątyni. To może być twój następny ruch.
-                    //TODO
+                    explorers.getActualExplorer().addNextMove(Field.SWIATYNIA);
                     break;
         }
     }
