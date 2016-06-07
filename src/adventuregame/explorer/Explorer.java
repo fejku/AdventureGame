@@ -9,11 +9,8 @@ import adventuregame.cards.enemy.Waz;
 import adventuregame.cards.object.DwaMieszkiZlota;
 import adventuregame.cards.object.MieszekZlota;
 import adventuregame.cards.spells.Spell;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -33,7 +30,7 @@ public abstract class Explorer {
     private ExplorerCharacter character;
   
     private int loseTurn;
-    private Set<Integer> nextMoves;
+    private List<Integer> nextMoves;
     
     private List<Card> items;
     private List<Enemy> defeatedCreatures;
@@ -53,7 +50,7 @@ public abstract class Explorer {
         
         actualPosition = startingPosition;
         loseTurn = 0;
-        nextMoves = new HashSet<Integer>();
+        nextMoves = new ArrayList<Integer>();
         
         defeatedCreatures = new ArrayList<>();
         items = new ArrayList<>();
@@ -324,24 +321,30 @@ public void test() {
     }
     
     public void addNextMove(FieldType fieldType) {
-
+    	int bottom = 0, top = 0;
+    	
         switch(fieldType) {
             case OUTER:
-                for (int i = 0; i < Field.FIELDS_OUTER_QUANTITY_TOP; i++)
-                    nextMoves.add(i);
+            	bottom = 0;
+            	top = Field.FIELDS_OUTER_QUANTITY_TOP;
                 break;
             case MIDDLE:
-                for (int i = Field.FIELDS_OUTER_QUANTITY_TOP; i < Field.FIELDS_MIDDLE_QUANTITY_TOP; i++)
-                    nextMoves.add(i);
+            	bottom = Field.FIELDS_OUTER_QUANTITY_TOP;
+            	top = Field.FIELDS_MIDDLE_QUANTITY_TOP;
                 break;
             case INNER:
-                for (int i = Field.FIELDS_MIDDLE_QUANTITY_TOP; i < Field.FIELDS_INNER_QUANTITY_TOP; i++)
-                    nextMoves.add(i);
+            	bottom = Field.FIELDS_MIDDLE_QUANTITY_TOP;
+            	top = Field.FIELDS_INNER_QUANTITY_TOP;
                 break;
-        }        
+        }
+        
+        for (int i = bottom; i < top; i++) {
+        	if (!nextMoves.contains(i))
+        		nextMoves.add(i);
+        }
     }
     
-    public Set<Integer> getNextMoves() {
+    public List<Integer> getNextMoves() {
         return nextMoves;
     }
 }
