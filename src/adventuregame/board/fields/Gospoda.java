@@ -23,27 +23,33 @@ public class Gospoda extends Field {
         switch(board.getDice().throwDice()) {
             case 1: 
                     //Upiłeś się i zasnąłeś w kącie. Tracisz następną turę.
+            		board.getDialog().message("Upiłeś się i zasnąłeś w kącie. Tracisz następną turę.");            	
                     explorers.getActualExplorer().loseTurn();
                     break;
             case 2:
                     //Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła: 3)
+            		board.getDialog().message("Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła: 3).");
                     fightWithoutCard(board, explorers.getActualExplorer(), FightType.STRENGTH, 3);
                     break;
             case 3:
                     //Grałeś w karty i przegrałeś 1 sztukę złota
-                    explorers.getActualExplorer().loseGold();
+            		board.getDialog().message("Grałeś w karty i przegrałeś 1 sztukę złota.");            	
+                    explorers.getActualExplorer().loseGold();                    
                     break;
             case 4:
                     //Grałeś w karty i wygrałeś sztukę złota
+            		board.getDialog().message("Grałeś w karty i wygrałeś sztukę złota.");            	
                     explorers.getActualExplorer().gainGold();
                     break;
             case 5:
                     //Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.
-                    explorers.getActualExplorer().addNextMove(FieldType.OUTER);
+            		board.getDialog().message("Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.");            	
+                    explorers.getActualExplorer().addNextMove(FieldType.OUTER, explorers.getActualExplorer().getActualPosition());                    
                     break;
             case 6:
                     //Przewoźnik ofiaruje ci przeprawę do Świątyni. To może być twój następny ruch.
-                    explorers.getActualExplorer().addNextMove(Field.SWIATYNIA);
+            		board.getDialog().message("Przewoźnik ofiaruje ci przeprawę do Świątyni. To może być twój następny ruch.");            	
+                    explorers.getActualExplorer().addNextMove(Field.SWIATYNIA, explorers.getActualExplorer().getActualPosition());
                     break;
         }
     }
