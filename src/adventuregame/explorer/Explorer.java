@@ -316,11 +316,11 @@ public void test() {
             spells.add(board.getSpellFromDeck());
     }
     
-    public void addNextMove(int fieldNr) {
+    public void addNextMove(int fieldNr, int actualExplorerPosition) {
         nextMoves.add(fieldNr);
     }
     
-    public void addNextMove(FieldType fieldType) {
+    public void addNextMove(FieldType fieldType, int actualExplorerPosition) {
     	int bottom = 0, top = 0;
     	
         switch(fieldType) {
@@ -339,7 +339,7 @@ public void test() {
         }
         
         for (int i = bottom; i < top; i++) {
-        	if (!nextMoves.contains(i))
+        	if ((!nextMoves.contains(i)) && (i != actualExplorerPosition)) 
         		nextMoves.add(i);
         }
     }
