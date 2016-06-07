@@ -106,7 +106,8 @@ public class Board {
         int neighbour;
         int actualPosition = explorer.getActualPosition();
         
-        if (explorer.getNextMoves().size() == 0) {
+        moves.addAll(explorer.getNextMoves());
+
         int diceResult = 6;//dice.throwDice();
         
         //Left
@@ -114,15 +115,16 @@ public class Board {
         for (int i = 1; i < diceResult; i++) {
             neighbour = fields.get(neighbour).getNeighbor(Field.LEFT);
         }
-        moves.add(neighbour);
+        if(!moves.contains(neighbour))
+        	moves.add(neighbour);
         
         //Right
         neighbour = fields.get(actualPosition).getNeighbor(Field.RIGHT);
         for (int i = 1; i < diceResult; i++) {
             neighbour = fields.get(neighbour).getNeighbor(Field.RIGHT);
         }
-        moves.add(neighbour);
-        } else {moves.addAll(explorer.getNextMoves());}
+        if(!moves.contains(neighbour))
+        	moves.add(neighbour);
         
         return moves;
     }
