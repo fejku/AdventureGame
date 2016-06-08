@@ -1,5 +1,6 @@
 package adventuregame.explorer;
 
+import adventuregame.board.fields.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,9 @@ public class Explorers {
     
     public List<Explorer> initExplorers() {
         List<Explorer> explorers = new ArrayList<>();
+        explorers.add(new Test("Test", 2, 2, Field.MIASTO, ExplorerCharacter.DOBRY));
         explorers.add(new Filozof());
-        explorers.add(new Wojownik());
+        //explorers.add(new Wojownik());
         return explorers;
     }
     

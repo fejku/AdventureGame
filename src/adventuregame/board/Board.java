@@ -51,6 +51,7 @@ public class Board {
     private List<Field> initFields() {
         List<Field> fields = new ArrayList<>();
         
+        //OUTTER
         fields.add(new Gospoda());
         fields.add(new Rowniny());
         fields.add(new Puszcza());
@@ -79,6 +80,8 @@ public class Board {
         fields.add(new Ruiny());
         fields.add(new Pola());
 
+        //MIDDLE
+        fields.add(new Pola());
         return fields;
     }
     
@@ -115,7 +118,7 @@ public class Board {
         for (int i = 1; i < diceResult; i++) {
             neighbour = fields.get(neighbour).getNeighbor(Field.LEFT);
         }
-        if(!moves.contains(neighbour))
+        if ((!moves.contains(neighbour)) && (neighbour != explorer.getActualPosition()))
         	moves.add(neighbour);
         
         //Right
@@ -123,7 +126,7 @@ public class Board {
         for (int i = 1; i < diceResult; i++) {
             neighbour = fields.get(neighbour).getNeighbor(Field.RIGHT);
         }
-        if(!moves.contains(neighbour))
+        if ((!moves.contains(neighbour)) && (neighbour != explorer.getActualPosition()))
         	moves.add(neighbour);
         
         return moves;
