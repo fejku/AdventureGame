@@ -119,23 +119,29 @@ public class Miasto extends Field{
         int diceResult = board.getDice().throwDice();
         switch(diceResult) {
             case 0:
-                    explorer.changeIntoToad();
-                    break;
+                board.getDialog().message("Zostajesz zamieniony w ropuchę.");
+                explorer.changeIntoToad();
+                break;
             case 1:
-                    explorer.loseStrength();
-                    break;
+                board.getDialog().message("Tracisz 1 punkt Siły.");
+                explorer.loseStrength();
+                break;
             case 2:
-                    explorer.loseCraft();
-                    break;
+                board.getDialog().message("Tracisz 1 punkt Mocy.");
+                explorer.loseCraft();
+                break;
             case 3:
-                    explorer.gainCraft();
-                    break;
+                board.getDialog().message("Otrzymujesz 1 punkt Mocy.");
+                explorer.gainCraft();
+                break;
             case 4:
-                    explorer.gainStrength();
-                    break;
+                board.getDialog().message("Otrzymujesz 1 punkt Siły.");
+                explorer.gainStrength();
+                break;
             case 5:
-                    explorer.gainSpell(board);
-                    break;
+                board.getDialog().message("Otrzymujesz 1 Zaklęcie.");
+                //explorer.gainSpell(board);
+                break;
         }
     }
 }
