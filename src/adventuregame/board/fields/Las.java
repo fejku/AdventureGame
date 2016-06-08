@@ -7,6 +7,7 @@ package adventuregame.board.fields;
 
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorers;
+import adventuregame.explorer.FightType;
 
 /**
  *
@@ -20,7 +21,29 @@ public class Las extends Field{
 
     @Override
     public void action(Board board, Explorers explorers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch(board.getDice().throwDice()) {
+            case 1: 
+                    //Zaatakował cię bandyta (Siła: 4)
+                    board.getDialog().message("Zaatakował cię bandyta (Siła: 4).");
+                    fightWithoutCard(board, explorers.getActualExplorer(), FightType.STRENGTH, 4);
+                    break;
+            case 2:
+            case 3:
+                    //Tracisz następną turę
+                    board.getDialog().message("Tracisz następną turę.");
+                    explorers.getActualExplorer().loseTurn();
+                    break;
+            case 4:
+            case 5:
+                    //Nic się nie dzieje
+                    board.getDialog().message("Nic się nie dzieje.");
+                    break;
+            case 6:
+                    //Wyprowadza cię stąd leśniczy. Zyskujesz 1 punkt Mocy
+                    board.getDialog().message("Wyprowadza cię stąd leśniczy. Zyskujesz 1 punkt Mocy.");
+                    explorers.getActualExplorer().gainCraft();
+                    break;
+        }
     }
     
     
