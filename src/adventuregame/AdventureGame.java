@@ -27,6 +27,7 @@ public class AdventureGame {
         
         explorers.pickExplorers();
         do {
+dialog.message("************* POCZATEK TURY *******************");        	
             if (explorers.getActualExplorer().isLosesTurn()) {
                 explorers.getActualExplorer().passLoseTurn();
             } else {
@@ -49,6 +50,7 @@ public class AdventureGame {
                 }
                 dialog.message(explorers.getActualExplorer().writeStats());
             }
+dialog.message("************* KONIEC TURY *******************");            
             //Next player
             explorers.nextExplorerTurn();
         } while (true);
