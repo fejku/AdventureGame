@@ -1,16 +1,15 @@
 package adventuregame.explorer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import adventuregame.board.Board;
 import adventuregame.board.fields.Field;
 import adventuregame.board.fields.FieldType;
-import adventuregame.cards.Card;
 import adventuregame.cards.enemy.Enemy;
-import adventuregame.cards.enemy.Waz;
-import adventuregame.cards.object.DwaMieszkiZlota;
-import adventuregame.cards.object.MieszekZlota;
+import adventuregame.cards.item.ACardObject;
 import adventuregame.cards.spells.Spell;
-import java.util.ArrayList;
-import java.util.List;
+import adventuregame.utils.Constants;
 
 /**
  *
@@ -32,7 +31,7 @@ public abstract class Explorer {
     private int loseTurn;
     private List<Integer> nextMoves;
     
-    private List<Card> items;
+    private List<ACardObject> items;
     private List<Enemy> defeatedCreatures;
     private List<Spell> spells;
 
@@ -47,6 +46,7 @@ public abstract class Explorer {
         strength = baseStrength;
         this.baseCraft = baseCraft;
         craft = baseCraft;
+        this.character = character;
         
         actualPosition = startingPosition;
         loseTurn = 0;
@@ -58,9 +58,11 @@ public abstract class Explorer {
         test();
     }
 public void test() {
-    items.add(new Waz());
-    items.add(new MieszekZlota());
-    items.add(new DwaMieszkiZlota());
+//    gainItem(new Miecz());
+//    gainItem(new Miecz());
+//    gainItem(new Miecz());
+    gainGold(2);
+    actualPosition = 6;
 }
     //<editor-fold defaultstate="collapsed" desc="Getters and setters">
     public String getName() {
@@ -115,7 +117,7 @@ public void test() {
         this.character = character;
     }
     
-    public List<Card> getItems() {
+    public List<ACardObject> getItems() {
         return items;
     }    
     //</editor-fold>
@@ -234,11 +236,26 @@ public void test() {
                 "Actual position: " + actualPosition + "\n" +
                 "Gold: " + gold + "\n" +
                 "Strength: " + strength + "\n" +
-                "Life: " + life + "\n" +
-                "Collected cretures: ";
+                "Life: " + life;
+        
         for (int i = 0; i < defeatedCreatures.size(); i++) {
-			stats += "\n\t- " + defeatedCreatures.get(i).getName();
+        	if (i == 0)
+        		stats += "\nCollected cretures: ";
+			stats += "- " + defeatedCreatures.get(i).getName() + " ";
 		}
+        
+        for (int i = 0; i < items.size(); i++) {
+        	if (i == 0)
+        		stats += "\nCollected items: ";
+			stats += "- " + items.get(i).getName() + " ";
+		}
+        
+        for (int i = 0; i < spells.size(); i++) {
+        	if (i == 0)
+        		stats += "\nCollected spells: ";
+			stats += "- " + spells.get(i).getName() + " ";
+		}
+        
         return stats;
     }
     
@@ -346,5 +363,25 @@ public void test() {
     
     public List<Integer> getNextMoves() {
         return nextMoves;
+    }
+    
+    public int getMissingLife() {
+    	int missingLife = Constants.MAX_LIFE - life;
+    	if (missingLife < 0)
+    		return 0;
+    	else
+    		return missingLife;
+    }
+    
+    public int getMaxRegainLife() {
+    	int missingLife = getMissingLife();
+    	if (gold < missingLife)
+    		return gold;
+    	else
+    		return missingLife;
+    }
+    
+    public void gainItem(ACardObject item) {
+    	items.add(item);
     }
 }
