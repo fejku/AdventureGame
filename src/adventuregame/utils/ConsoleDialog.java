@@ -21,7 +21,7 @@ public class ConsoleDialog implements IDialog {
         do {
             System.out.print(message + " (0-" + (nrChoices-1) + "): ");
             choice = input.nextInt();
-        } while ((choice < 0) || (choice > nrChoices) && (nrChoices >= 0));
+        } while ((choice < 0) || (choice >= nrChoices) && (nrChoices >= 0));
         return choice;
     }
 
