@@ -1,7 +1,7 @@
 package adventuregame.board.fields;
 
 import adventuregame.board.Board;
-import adventuregame.cards.Card;
+import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.explorer.FightResult;
@@ -24,7 +24,7 @@ public abstract class Field {
     private final String name;    
     private final int[] neighbors;
     
-    private List<Card> cards;
+    private List<ACard> cards;
    
     public Field(String name) {
         this.name = name;
@@ -44,11 +44,11 @@ public abstract class Field {
         neighbors[location] = neighbor;
     }    
     
-    public List<Card> getCards() {
+    public List<ACard> getCards() {
         return cards;
     }
     
-    public void removeCardFromField(Card card) {
+    public void removeCardFromField(ACard card) {
     	cards.remove(card);
     }
     
