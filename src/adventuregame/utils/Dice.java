@@ -23,6 +23,8 @@ public class Dice {
     }
     
     public int throwDice(int sides) {
-        return r.nextInt(sides) + 1;
+    	int result = r.nextInt(sides) + 1;
+    	System.out.println("Wynik rzutu kością: "+result);
+        return result;
     }
 }
