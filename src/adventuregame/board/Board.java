@@ -14,7 +14,7 @@ import adventuregame.board.fields.Skaly;
 import adventuregame.board.fields.Straznik;
 import adventuregame.board.fields.Wioska;
 import adventuregame.board.fields.Wzgorza;
-import adventuregame.cards.Card;
+import adventuregame.cards.ACard;
 import adventuregame.cards.enemy.Waz;
 import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorer;
@@ -30,8 +30,9 @@ import java.util.List;
  */
 public class Board {
     private final List<Field> fields;
-    private List<Card> cards;
+    private List<ACard> cards;
     private List<Spell> spells;
+    private Equipments equipments;
     private final Dice dice;
     private final IDialog dialog;
             
@@ -42,6 +43,7 @@ public class Board {
         initNeighbors();     
         this.cards = initCards();
         this.spells = initSpells();
+        equipments = new Equipments();
     }
     
     public Field getField(int fieldNr) {
@@ -140,16 +142,16 @@ public class Board {
         return fields.get(fieldNr).isCardOnField();
     }
     
-    public List<Card> initCards() {   
-        List<Card> cards = new ArrayList<>();
+    public List<ACard> initCards() {   
+        List<ACard> cards = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             cards.add(new Waz());
         }
         return cards;
     }
     
-    public Card getCardFromDeck() {
-        Card card;
+    public ACard getCardFromDeck() {
+        ACard card;
         card = cards.get(0);
         cards.remove(0);
         return card;
@@ -172,5 +174,9 @@ public class Board {
         Spell spell = spells.get(0);
         spells.remove(0);
         return spell;
+    }
+       
+    public Equipments getEquipment() {
+    	return equipments;
     }
 }
