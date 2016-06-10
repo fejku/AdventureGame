@@ -6,7 +6,7 @@
 package adventuregame.cards.enemy;
 
 import adventuregame.board.Board;
-import adventuregame.cards.Card;
+import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 
@@ -14,7 +14,7 @@ import adventuregame.explorer.Explorers;
  *
  * @author Fake
  */
-public abstract class Enemy extends Card{
+public abstract class Enemy extends ACard{
     
     private final int strength;
 
