@@ -1,14 +1,14 @@
 package adventuregame.cards.spells;
 
 import adventuregame.board.Board;
-import adventuregame.cards.Card;
+import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorers;
 
 /**
  *
  * @author Fake
  */
-public abstract class Spell extends Card {
+public abstract class Spell extends ACard {
 
     public Spell(String name) {
         super(name);
