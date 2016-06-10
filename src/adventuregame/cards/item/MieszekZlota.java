@@ -1,14 +1,14 @@
-package adventuregame.cards.object;
+package adventuregame.cards.item;
 
 import adventuregame.board.Board;
-import adventuregame.cards.Card;
+import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorers;
 
 /**
  *
  * @author Fake
  */
-public class MieszekZlota extends Card{
+public class MieszekZlota extends ACard{
 
     public MieszekZlota() {
         super("Mieszek złota");
