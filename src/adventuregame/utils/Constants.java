@@ -10,5 +10,6 @@ package adventuregame.utils;
  * @author Fake
  */
 public class Constants {
+	public static final int MAX_LIFE = 4;
     //public static final int BOARD_SIZE = 24;
 }
