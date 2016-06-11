@@ -6,6 +6,7 @@ import java.util.List;
 import adventuregame.board.Board;
 import adventuregame.board.fields.Field;
 import adventuregame.board.fields.FieldType;
+import adventuregame.cards.ACard;
 import adventuregame.cards.enemy.Enemy;
 import adventuregame.cards.item.ACardObject;
 import adventuregame.cards.item.Topor;
@@ -385,5 +386,9 @@ public void test() {
     
     public void gainItem(ACardObject item) {
     	items.add(item);
+    }
+
+    public FightResult fight(List<ACard> enemys) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

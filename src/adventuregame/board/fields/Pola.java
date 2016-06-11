@@ -9,6 +9,6 @@ import adventuregame.board.Board;
 public class Pola extends FieldGetCard{
     
     public Pola() {
-        super("Pola");
+        super("Pola", 1);
     }    
 }

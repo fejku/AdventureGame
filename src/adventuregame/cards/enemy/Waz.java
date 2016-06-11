@@ -9,6 +9,6 @@ import adventuregame.cards.enemy.Enemy;
 public class Waz extends Enemy{
 
     public Waz() {
-        super("Wąż", 4);
+        super("Wąż", 2, 4);
     }    
 }

@@ -157,6 +157,14 @@ public class Board {
         return card;
     }
     
+    public List<ACard> getCardFromDeck(int amount) {
+        List<ACard> cardsFromDeck = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            cardsFromDeck.add(getCardFromDeck());
+        }
+        return cardsFromDeck;
+    }
+    
     public Dice getDice() {
         return dice;
     }

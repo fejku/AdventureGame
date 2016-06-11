@@ -11,7 +11,7 @@ import adventuregame.explorer.Explorers;
 public class MieszekZlota extends ACard{
 
     public MieszekZlota() {
-        super("Mieszek złota");
+        super("Mieszek złota", 5);
     }
 
     @Override

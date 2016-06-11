@@ -8,10 +8,13 @@ import adventuregame.explorer.Explorers;
  * @author Fake
  */
 public abstract class ACard implements ICard {
-    private final String name;
     
-    public ACard(String name) {
+    private final String name;
+    private final int priority;
+    
+    public ACard(String name, int priority) {
         this.name = name;
+        this.priority = priority;
     }
     
     public abstract void Action(Board board, Explorers explorers);  
@@ -20,5 +23,7 @@ public abstract class ACard implements ICard {
         return name;
     }
     
-    
+    public int getPriority() {
+        return priority;
+    }
 }

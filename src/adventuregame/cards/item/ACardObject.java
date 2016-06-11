@@ -7,7 +7,7 @@ public abstract class ACardObject extends ACard {
     private final int amountInDeck;
 
     public ACardObject(String name, int amountInDeck) {
-        super(name);
+        super(name, 5);
         this.amountInDeck = amountInDeck;
     }
 

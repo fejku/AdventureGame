@@ -18,8 +18,8 @@ public abstract class Enemy extends ACard{
     
     private final int strength;
 
-    public Enemy(String name, int strength) {
-        super(name);
+    public Enemy(String name, int priority, int strength) {
+        super(name, priority);
         this.strength = strength;
     }
 
