@@ -28,7 +28,7 @@ public class Alchemik extends ACitizen {
      * @param explorer Aktualny Poszukiwacz
      */
     @Override
-    public void Action(Board board, Explorer explorer) {
+    public void action(Board board, Explorer explorer) {
         IDialog dialog = board.getDialog();
         List<ACardObject> items = explorer.getItems();
         String[] itemsNames = new String[items.size()];
@@ -48,7 +48,7 @@ public class Alchemik extends ACitizen {
             explorer.gainGold();
 
             if (dialog.chooseYesNo("Zamienić kolejny przedmiot?"))
-                Action(board, explorer);
+                action(board, explorer);
         }
     }
 }

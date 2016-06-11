@@ -20,14 +20,14 @@ public class Cmentarz extends Field{
         Explorer actualExplorer = explorers.getActualExplorer();
         switch(actualExplorer.getCharacter()) {
         case DOBRY:
-        	goodAction(board.getDialog(), actualExplorer);
-        	break;
+            goodAction(board.getDialog(), actualExplorer);
+            break;
         case NEUTRALNY:
-        	neutralAction(board.getDialog());
-        	break;
+            neutralAction(board.getDialog());
+            break;
         case ZLY:
-        	evilAction(board.getDialog(), board.getDice(), actualExplorer);
-        	break;
+            evilAction(board.getDialog(), board.getDice(), actualExplorer);
+            break;
         }
     }
     
@@ -60,6 +60,8 @@ public class Cmentarz extends Field{
             dialog.message("Zyskujesz 1 Czar.");
             //explorers.getActualExplorer().gainSpell(board);
             break;
+        default:
+            throw new IndexOutOfBoundsException("Błąd w klasie Cmentarz w metodzie evilAction. Brak akcji dla uzyskanego wyniku rzutu kostką.");                            
         }
     }
 }

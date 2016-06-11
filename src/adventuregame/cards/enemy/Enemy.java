@@ -36,7 +36,7 @@ public abstract class Enemy extends ACard{
         System.out.println("Sila przeciwnika po rzucie: "+foeStrenght);
         System.out.println(actExp.writeStats());
         int explorerStrenght = actExp.getStrength() +
-                board.getDice().throwDice();
+            board.getDice().throwDice();
         System.out.println("Sila poszukiwacza po rzucie: " + explorerStrenght);
         if(explorerStrenght>foeStrenght) {
             //Usunięcie karty z pola

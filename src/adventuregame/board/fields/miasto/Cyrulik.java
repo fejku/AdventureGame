@@ -23,7 +23,7 @@ public class Cyrulik extends ACitizen {
      * @param explorer Aktualny Poszukiwacz
      */
     @Override
-    public void Action(Board board, Explorer explorer) {
+    public void action(Board board, Explorer explorer) {
         int maxRegainLife = explorer.getMaxRegainLife();
         if (maxRegainLife == 1) {
             explorer.regainLife();

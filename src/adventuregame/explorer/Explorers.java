@@ -20,8 +20,9 @@ public class Explorers {
     
     public List<Explorer> initExplorers() {
         List<Explorer> explorers = new ArrayList<>();
-        explorers.add(new Test("Test", 2, 2, Field.MIASTO, ExplorerCharacter.DOBRY));
-        explorers.add(new Filozof());
+        explorers.add(new Test("Test", 2, 2, Field.GOSPODA, ExplorerCharacter.DOBRY));
+        explorers.add(new Test("Test123", 2, 2, Field.GOSPODA, ExplorerCharacter.DOBRY));
+        //explorers.add(new Filozof());
         //explorers.add(new Wojownik());
         return explorers;
     }
@@ -54,10 +55,10 @@ public class Explorers {
     public List<Explorer> getOtherExplorersOnField(int fieldNr) {
     	List<Explorer> otherExplorersOnField = new ArrayList<>();
     	for (int i = 0; i < pickedExplorers.size(); i++) {
-			if ((pickedExplorers.get(i).getActualPosition() == fieldNr) 
-					&& (i != actualExplorer))
-				otherExplorersOnField.add(pickedExplorers.get(i));
-		}
+            if ((pickedExplorers.get(i).getActualPosition() == fieldNr) 
+                    && (i != actualExplorer))
+                otherExplorersOnField.add(pickedExplorers.get(i));
+        }
     	return otherExplorersOnField;
     }
 }

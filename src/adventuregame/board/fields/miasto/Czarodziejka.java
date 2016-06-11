@@ -19,7 +19,7 @@ public class Czarodziejka extends ACitizen {
      * 6. Otrzymujesz 1 Zaklęcie
      */
     @Override
-    public void Action(Board board, Explorer explorer) {
+    public void action(Board board, Explorer explorer) {
         switch(board.getDice().throwDice()) {
             case 1:
                 board.getDialog().message("Zostajesz zamieniony w ropuchę.");
@@ -46,7 +46,7 @@ public class Czarodziejka extends ACitizen {
                 //explorer.gainSpell(board);
                 break;
             default:
-                throw new IndexOutOfBoundsException("Błąd w klasie Czarodziejka w metodzie Action. Brak akcji dla uzyskanego wyniku rzutu kostką.");
+                throw new IndexOutOfBoundsException("Błąd w klasie Czarodziejka w metodzie action. Brak akcji dla uzyskanego wyniku rzutu kostką.");
         }
     }
 }

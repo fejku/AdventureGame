@@ -121,7 +121,7 @@ public class Board {
             neighbour = fields.get(neighbour).getNeighbor(Field.LEFT);
         }
         if ((!moves.contains(neighbour)) && (neighbour != explorer.getActualPosition()))
-        	moves.add(neighbour);
+            moves.add(neighbour);
         
         //Right
         neighbour = fields.get(actualPosition).getNeighbor(Field.RIGHT);
@@ -129,7 +129,7 @@ public class Board {
             neighbour = fields.get(neighbour).getNeighbor(Field.RIGHT);
         }
         if ((!moves.contains(neighbour)) && (neighbour != explorer.getActualPosition()))
-        	moves.add(neighbour);
+            moves.add(neighbour);
         
         return moves;
     }

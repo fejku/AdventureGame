@@ -31,21 +31,21 @@ public class Wioska extends Field{
     	List<ICitizen> citizens = initListWithValidCitizens(explorers.getActualExplorer());
 
     	String[] citizensNames = new String[citizens.size()];
-    	for (int i = 0; i < citizens.size(); i++) {
-			citizensNames[i] = citizens.get(i).getName();
-		}
+    	for (int i = 0; i < citizens.size(); i++)
+            citizensNames[i] = citizens.get(i).getName();
+
     	int choice = board.getDialog().chooseOption("Możesz odwiedzić:", citizensNames);
-    	citizens.get(choice).Action(board, explorers.getActualExplorer());
+    	citizens.get(choice).action(board, explorers.getActualExplorer());
     }
     
     public List<ICitizen> initListWithValidCitizens(Explorer explorer) {
     	List<ICitizen> citizens = new ArrayList<>();
     	ICitizen lekarz = new Lekarz();
     	if (lekarz.isValid(explorer)) 
-    		citizens.add(lekarz);
+            citizens.add(lekarz);
     	ICitizen kowal = new Kowal();
     	if (kowal.isValid(explorer)) 
-    		citizens.add(kowal);
+            citizens.add(kowal);
     	ICitizen mystic = new Mystic();
     	citizens.add(mystic);
     	

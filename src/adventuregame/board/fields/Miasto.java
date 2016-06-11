@@ -24,21 +24,21 @@ public class Miasto extends Field {
     	List<ICitizen> citizens = initListWithValidCitizens(explorers.getActualExplorer());
 
     	String[] citizensNames = new String[citizens.size()];
-    	for (int i = 0; i < citizens.size(); i++) {
-			citizensNames[i] = citizens.get(i).getName();
-		}
+    	for (int i = 0; i < citizens.size(); i++)
+            citizensNames[i] = citizens.get(i).getName();
+        
     	int choice = board.getDialog().chooseOption("Możesz odwiedzić:", citizensNames);
-    	citizens.get(choice).Action(board, explorers.getActualExplorer());
+    	citizens.get(choice).action(board, explorers.getActualExplorer());
     }
     
     public List<ICitizen> initListWithValidCitizens(Explorer explorer) {
     	List<ICitizen> citizens = new ArrayList<>();
     	ICitizen cyrulik = new Cyrulik();
     	if (cyrulik.isValid(explorer)) 
-    		citizens.add(cyrulik);
+            citizens.add(cyrulik);
     	ICitizen alchemik = new Alchemik();
     	if (alchemik.isValid(explorer)) 
-    		citizens.add(alchemik);
+            citizens.add(alchemik);
     	ICitizen czarodziejka = new Czarodziejka();
     	citizens.add(czarodziejka);
     	

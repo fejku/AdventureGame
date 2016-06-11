@@ -8,6 +8,8 @@ import adventuregame.board.fields.Field;
 import adventuregame.board.fields.FieldType;
 import adventuregame.cards.enemy.Enemy;
 import adventuregame.cards.item.ACardObject;
+import adventuregame.cards.item.Topor;
+import adventuregame.cards.item.weapon.Miecz;
 import adventuregame.cards.spells.Spell;
 import adventuregame.utils.Constants;
 
@@ -58,11 +60,11 @@ public abstract class Explorer {
         test();
     }
 public void test() {
-//    gainItem(new Miecz());
-//    gainItem(new Miecz());
+    gainItem(new Miecz());
+    gainItem(new Topor());
 //    gainItem(new Miecz());
     gainGold(2);
-    actualPosition = 6;
+    actualPosition = 0;
 }
     //<editor-fold defaultstate="collapsed" desc="Getters and setters">
     public String getName() {
@@ -239,22 +241,22 @@ public void test() {
                 "Life: " + life;
         
         for (int i = 0; i < defeatedCreatures.size(); i++) {
-        	if (i == 0)
-        		stats += "\nCollected cretures: ";
-			stats += "- " + defeatedCreatures.get(i).getName() + " ";
-		}
+            if (i == 0)
+                stats += "\nCollected cretures: ";
+                stats += "- " + defeatedCreatures.get(i).getName() + " ";
+            }
         
         for (int i = 0; i < items.size(); i++) {
-        	if (i == 0)
-        		stats += "\nCollected items: ";
-			stats += "- " + items.get(i).getName() + " ";
-		}
+            if (i == 0)
+                stats += "\nCollected items: ";
+                stats += "- " + items.get(i).getName() + " ";
+            }
         
         for (int i = 0; i < spells.size(); i++) {
-        	if (i == 0)
-        		stats += "\nCollected spells: ";
-			stats += "- " + spells.get(i).getName() + " ";
-		}
+            if (i == 0)
+                stats += "\nCollected spells: ";
+                stats += "- " + spells.get(i).getName() + " ";
+            }
         
         return stats;
     }
@@ -356,8 +358,8 @@ public void test() {
         }
         
         for (int i = bottom; i < top; i++) {
-        	if ((!nextMoves.contains(i)) && (i != actualExplorerPosition)) 
-        		nextMoves.add(i);
+            if ((!nextMoves.contains(i)) && (i != actualExplorerPosition)) 
+                nextMoves.add(i);
         }
     }
     
@@ -368,17 +370,17 @@ public void test() {
     public int getMissingLife() {
     	int missingLife = Constants.MAX_LIFE - life;
     	if (missingLife < 0)
-    		return 0;
+            return 0;
     	else
-    		return missingLife;
+            return missingLife;
     }
     
     public int getMaxRegainLife() {
     	int missingLife = getMissingLife();
     	if (gold < missingLife)
-    		return gold;
+            return gold;
     	else
-    		return missingLife;
+            return missingLife;
     }
     
     public void gainItem(ACardObject item) {

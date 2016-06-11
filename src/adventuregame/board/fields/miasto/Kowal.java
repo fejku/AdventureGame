@@ -29,7 +29,7 @@ public class Kowal extends ACitizen {
     //BLACKSMITH: The Blacksmith sells the following objects (if available):
     //Helmet - 2G Sword - 2G Axe - 2G Shield - 3G Armour - 4G
     @Override
-    public void Action(Board board, Explorer explorer) {
+    public void action(Board board, Explorer explorer) {
         List<AItemsFromTown> availableEquipments = new ArrayList<>();
         if (board.getEquipment().isEquipemntInDeck(Helm.class) 
                 && (explorer.getGold() >= 2))

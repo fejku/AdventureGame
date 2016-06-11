@@ -16,7 +16,7 @@ public class Mystic extends ACitizen {
     //5. Gain 1 Craft
     //6. Gain 1 Spell
     @Override
-    public void Action(Board board, Explorer explorer) {
+    public void action(Board board, Explorer explorer) {
         switch (board.getDice().throwDice()) {
         case 1:
         case 2:
@@ -37,7 +37,7 @@ public class Mystic extends ACitizen {
             //explorer.gainSpell(board);
             break;
         default:
-            throw new IndexOutOfBoundsException("Błąd w klasie Mystic w metodzie Action. Brak akcji dla uzyskanego wyniku rzutu kostką.");
+            throw new IndexOutOfBoundsException("Błąd w klasie Mystic w metodzie action. Brak akcji dla uzyskanego wyniku rzutu kostką.");
         }
 
     }

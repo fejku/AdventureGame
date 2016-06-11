@@ -11,11 +11,11 @@ import adventuregame.cards.item.Zbroja;
 import adventuregame.cards.item.weapon.Miecz;
 
 public class Equipments {
-	private List<ACardObject> equipments;
-	
-	public Equipments() {
-		equipments = initEquipments();
-	}
+    private List<ACardObject> equipments;
+
+    public Equipments() {
+        equipments = initEquipments();
+    }
 	
     private List<ACardObject> initEquipments() {
     	List<ACardObject> equipment = new ArrayList<>();
@@ -36,10 +36,10 @@ public class Equipments {
     public int amountOfEquipmentInDeck(Class<?> equipmentType) {
     	int amount = 0;
     	for (ACardObject equipment: equipments) {
-			if (equipmentType.isInstance(equipment)) {
-				amount++;
-			}
-		}
+            if (equipmentType.isInstance(equipment)) {
+                amount++;
+            }
+        }
     	return amount;
     }
     
@@ -51,9 +51,9 @@ public class Equipments {
     	int firstObjectNr = -1;
     	
     	for (int i = 0; i < equipments.size(); i++) {
-			if(equipmentType.isInstance(equipments.get(i)))
-				firstObjectNr = i;
-		}
+            if(equipmentType.isInstance(equipments.get(i)))
+                firstObjectNr = i;
+        }
     	
     	return equipments.remove(firstObjectNr);
     }
@@ -62,7 +62,7 @@ public class Equipments {
     	List<ACardObject> equipment = new ArrayList<>();
     	
     	for (int i = 0; i < cardObject.getAmountInDeck(); i++)
-    		equipment.add(cardObject);
+            equipment.add(cardObject);
     	
     	return equipment;
     }
