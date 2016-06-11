@@ -5,9 +5,9 @@ import adventuregame.explorer.Explorer;
 
 public class Czarodziejka extends ACitizen {
 
-	public Czarodziejka() {
-		super("Czarodziejka");
-	}
+    public Czarodziejka() {
+        super("Czarodziejka");
+    }
 
     /**
      * Czarodziejka (Rzuć 1 kością)
@@ -18,8 +18,8 @@ public class Czarodziejka extends ACitizen {
      * 5. Otrzymujesz 1 punkt Siły
      * 6. Otrzymujesz 1 Zaklęcie
      */
-	@Override
-	public void Action(Board board, Explorer explorer) {
+    @Override
+    public void Action(Board board, Explorer explorer) {
         switch(board.getDice().throwDice()) {
             case 1:
                 board.getDialog().message("Zostajesz zamieniony w ropuchę.");
@@ -45,7 +45,8 @@ public class Czarodziejka extends ACitizen {
                 board.getDialog().message("Otrzymujesz 1 Zaklęcie.");
                 //explorer.gainSpell(board);
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Błąd w klasie Czarodziejka w metodzie Action. Brak akcji dla uzyskanego wyniku rzutu kostką.");
         }
-	}
-
+    }
 }
