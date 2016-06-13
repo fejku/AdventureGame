@@ -16,23 +16,23 @@ import adventuregame.explorer.Explorers;
  */
 public abstract class Enemy extends ACard{
     
-    private final int strength;
+    private final int power;
 
     public Enemy(String name, int priority, int strength) {
         super(name, priority);
-        this.strength = strength;
+        this.power = strength;
     }
 
-    public int getStrength() {
-        return strength;
+    public int getPower() {
+        return power;
     }
     
     @Override
     public void Action(Board board, Explorers explorers) {
         Explorer actExp = explorers.getActualExplorer();
         
-        System.out.println("Przeciwnik " + getName() + " siła: " + getStrength());
-        int foeStrenght = getStrength() + board.getDice().throwDice();
+        System.out.println("Przeciwnik " + getName() + " siła: " + getPower());
+        int foeStrenght = getPower() + board.getDice().throwDice();
         System.out.println("Sila przeciwnika po rzucie: "+foeStrenght);
         System.out.println(actExp.writeStats());
         int explorerStrenght = actExp.getStrength() +

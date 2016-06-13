@@ -6,9 +6,10 @@ import adventuregame.cards.enemy.Enemy;
  *
  * @author Fake
  */
-public class Waz extends Enemy{
+public class Waz extends EnemyStrenght {
 
     public Waz() {
-        super("Wąż", 2, 4);
+        super("Wąż", 4);
     }    
+    //Ogromny wąż postanowił zamieszkać w tym Obszarze. Posotanie tu, aż ktoś go pokona.
 }
