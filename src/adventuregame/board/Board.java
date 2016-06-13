@@ -15,7 +15,7 @@ import adventuregame.board.fields.Straznik;
 import adventuregame.board.fields.Wioska;
 import adventuregame.board.fields.Wzgorza;
 import adventuregame.cards.ACard;
-import adventuregame.cards.enemy.Waz;
+import adventuregame.cards.enemy.strength.Waz;
 import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;

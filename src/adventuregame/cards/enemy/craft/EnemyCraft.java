@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adventuregame.cards.enemy;
+package adventuregame.cards.enemy.craft;
+
+import adventuregame.cards.enemy.Enemy;
 
 /**
  *
  * @author Fake
  */
-public abstract class EnemyStrenght extends Enemy {
+public abstract class EnemyCraft extends Enemy {
     
-    public EnemyStrenght(String name, int strength) {
-        super(name, 2, strength);
+    public EnemyCraft(String name, int craft) {
+        super(name, 3, craft);
     }
     
 }

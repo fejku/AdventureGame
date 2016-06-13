@@ -1,6 +1,4 @@
-package adventuregame.cards.enemy;
-
-import adventuregame.cards.enemy.Enemy;
+package adventuregame.cards.enemy.strength;
 
 /**
  *
