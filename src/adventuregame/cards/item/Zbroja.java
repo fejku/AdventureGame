@@ -3,7 +3,7 @@ package adventuregame.cards.item;
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorers;
 
-public class Zbroja extends AItemsFromTown {
+public class Zbroja extends Item {
 
     public Zbroja() {
         super("Zbroja", 4, 3);
