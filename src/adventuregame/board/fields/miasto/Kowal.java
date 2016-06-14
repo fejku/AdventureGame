@@ -5,11 +5,11 @@ import java.util.List;
 
 import adventuregame.board.Board;
 import adventuregame.cards.item.Helm;
-import adventuregame.cards.item.AItemsFromTown;
+import adventuregame.cards.item.Item;
 import adventuregame.cards.item.Tarcza;
-import adventuregame.cards.item.Topor;
 import adventuregame.cards.item.Zbroja;
 import adventuregame.cards.item.weapon.Miecz;
+import adventuregame.cards.item.weapon.Topor;
 import adventuregame.explorer.Explorer;
 
 public class Kowal extends ACitizen {
@@ -30,7 +30,7 @@ public class Kowal extends ACitizen {
     //Helmet - 2G Sword - 2G Axe - 2G Shield - 3G Armour - 4G
     @Override
     public void action(Board board, Explorer explorer) {
-        List<AItemsFromTown> availableEquipments = new ArrayList<>();
+        List<Item> availableEquipments = new ArrayList<>();
         if (board.getEquipment().isEquipemntInDeck(Helm.class) 
                 && (explorer.getGold() >= 2))
             availableEquipments.add(new Helm());
