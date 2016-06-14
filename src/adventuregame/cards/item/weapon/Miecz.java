@@ -11,7 +11,7 @@ public class Miecz extends Weapon {
 
     @Override
     public void Action(Board board, Explorers explorers) {
-        explorers.getActualExplorer().gainItem(this);
+        explorers.getActualExplorer().gainItem(board.getDialog(), this);
 
         if (board.getDialog().chooseYesNo("Czy chcesz ustawić jako główną broń?")) {
             //usuń poprzedni 
