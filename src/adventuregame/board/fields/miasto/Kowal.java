@@ -56,7 +56,7 @@ public class Kowal extends ACitizen {
 
         int choice = board.getDialog().chooseOption("Co chcesz kupić?", availableEquipmentsName);
         explorer.loseGold(availableEquipments.get(choice).getCostInTown());
-        explorer.gainItem(board.getEquipment().removeEquipmentFromDeck(availableEquipments.get(choice).getClass()));
+        explorer.gainItem(board.getDialog(), board.getEquipment().removeEquipmentFromDeck(availableEquipments.get(choice).getClass()));
     }
 
 }
