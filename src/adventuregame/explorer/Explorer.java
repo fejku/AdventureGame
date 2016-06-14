@@ -8,9 +8,10 @@ import adventuregame.board.fields.Field;
 import adventuregame.board.fields.FieldType;
 import adventuregame.cards.ACard;
 import adventuregame.cards.enemy.Enemy;
-import adventuregame.cards.item.ACardObject;
-import adventuregame.cards.item.Topor;
+import adventuregame.cards.item.Item;
+import adventuregame.cards.item.weapon.Weapon;
 import adventuregame.cards.item.weapon.Miecz;
+import adventuregame.cards.item.weapon.Topor;
 import adventuregame.cards.spells.Spell;
 import adventuregame.utils.Constants;
 
@@ -34,9 +35,11 @@ public abstract class Explorer {
     private int loseTurn;
     private List<Integer> nextMoves;
     
-    private List<ACardObject> items;
+    private List<Item> items;
     private List<Enemy> defeatedCreatures;
     private List<Spell> spells;
+    
+    private List<Weapon> equippedWeapons;
 
     public Explorer(String name, int baseStrength, int baseCraft, 
             int startingPosition, ExplorerCharacter character) {
@@ -58,6 +61,9 @@ public abstract class Explorer {
         defeatedCreatures = new ArrayList<>();
         items = new ArrayList<>();
         spells = new ArrayList<>();
+        
+        equippedWeapons = new ArrayList<>();
+        
         test();
     }
 public void test() {
@@ -120,7 +126,7 @@ public void test() {
         this.character = character;
     }
     
-    public List<ACardObject> getItems() {
+    public List<Item> getItems() {
         return items;
     }    
     //</editor-fold>
@@ -276,13 +282,17 @@ public void test() {
     }
     
     public int getStrengthModifiers() {
-        //TODO: zwraca dodatek do siły uzyskany dzięki przedmiotom
-        return 0;
+    	int strengthModifier = 0;
+        for (Weapon weapon: equippedWeapons)
+        	strengthModifier += weapon.getStrengthModifier();
+        return strengthModifier;
     }
     
     public int getCraftModifiers() {
-        //TODO: zwraca dodatek do mocy uzyskany dzięki przedmiotom
-        return 0;
+        int craftModfier = 0;
+//        for (ACardObject item: items)
+//        	craftModfier += item.getCraftModfier();
+        return craftModfier;
     }
     
     public FightResult fight(Board board, FightType type, int amount) {
@@ -384,10 +394,32 @@ public void test() {
             return missingLife;
     }
     
-    public void gainItem(ACardObject item) {
+    public void gainItem(Item item) {
     	items.add(item);
+    	if (item.isWeapon())
+    		setEquippedWeapon();
+    }
+    
+    public void setEquippedWeapon() {
+    	List<Weapon> weapons = new ArrayList<>();
+    	for (Item item: items) 
+            if (item.isWeapon())
+                weapons.add((Weapon)item);
+
+        equippedWeapons.clear();
+		
+    	if (weapons.size() == 1)
+            equippedWeapons.add(weapons.get(0));
+    	else {
+            int choice = pickWeapon(weapons);
+            equippedWeapons.add(weapons.get(choice));
+    	}
     }
 
+    public int pickWeapon(List<Weapon> weapons) {
+    	
+    }
+    
     public FightResult fight(List<ACard> enemys) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
