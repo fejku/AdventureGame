@@ -3,7 +3,7 @@ package adventuregame.board.fields.miasto;
 import java.util.List;
 
 import adventuregame.board.Board;
-import adventuregame.cards.item.ACardObject;
+import adventuregame.cards.item.Item;
 import adventuregame.explorer.Explorer;
 import adventuregame.utils.IDialog;
 
@@ -30,7 +30,7 @@ public class Alchemik extends ACitizen {
     @Override
     public void action(Board board, Explorer explorer) {
         IDialog dialog = board.getDialog();
-        List<ACardObject> items = explorer.getItems();
+        List<Item> items = explorer.getItems();
         String[] itemsNames = new String[items.size()];
 
         for (int i = 0; i < items.size(); i++) {
