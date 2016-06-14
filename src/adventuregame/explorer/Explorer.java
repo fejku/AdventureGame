@@ -13,7 +13,9 @@ import adventuregame.cards.item.weapon.Weapon;
 import adventuregame.cards.item.weapon.Miecz;
 import adventuregame.cards.item.weapon.Topor;
 import adventuregame.cards.spells.Spell;
+import adventuregame.utils.ConsoleDialog;
 import adventuregame.utils.Constants;
+import adventuregame.utils.IDialog;
 
 /**
  *
@@ -67,8 +69,8 @@ public abstract class Explorer {
         test();
     }
 public void test() {
-    gainItem(new Miecz());
-    gainItem(new Topor());
+items.add(new Miecz());
+items.add(new Topor());
 //    gainItem(new Miecz());
     gainGold(2);
     actualPosition = 0;
@@ -394,30 +396,37 @@ public void test() {
             return missingLife;
     }
     
-    public void gainItem(Item item) {
+    public void gainItem(IDialog dialog, Item item) {
     	items.add(item);
     	if (item.isWeapon())
-    		setEquippedWeapon();
+    		setEquippedWeapon(dialog);
     }
     
-    public void setEquippedWeapon() {
+    public void setEquippedWeapon(IDialog dialog) {
     	List<Weapon> weapons = new ArrayList<>();
+        
     	for (Item item: items) 
             if (item.isWeapon())
                 weapons.add((Weapon)item);
 
-        equippedWeapons.clear();
+        String[] weaponsNames = new String[weapons.size()];
+        for (int i = 0; i < weapons.size(); i++)
+            weaponsNames[i] = weapons.get(i).getName();
 		
-    	if (weapons.size() == 1)
+    	if (weapons.size() == 1) {
+            equippedWeapons.clear();
             equippedWeapons.add(weapons.get(0));
-    	else {
-            int choice = pickWeapon(weapons);
-            equippedWeapons.add(weapons.get(choice));
+        } else {
+            if (equippedWeapons.size() > 0) {
+                if (dialog.chooseYesNo("Czy zmienić aktualną broń?")) {
+                    int choice = dialog.chooseOption("Wybierz aktywną broń.", weaponsNames);
+                    equippedWeapons.add(weapons.get(choice));
+                }
+            } else {
+                int choice = dialog.chooseOption("Wybierz aktywną broń.", weaponsNames);
+                equippedWeapons.add(weapons.get(choice));
+            }
     	}
-    }
-
-    public int pickWeapon(List<Weapon> weapons) {
-    	
     }
     
     public FightResult fight(List<ACard> enemys) {
