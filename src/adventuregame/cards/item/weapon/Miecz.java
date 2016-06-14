@@ -1,12 +1,12 @@
 package adventuregame.cards.item.weapon;
 
 import adventuregame.board.Board;
-import adventuregame.cards.item.AItemsFromTown;
 import adventuregame.explorer.Explorers;
 
-public class Miecz extends AItemsFromTown implements IWeapon {
+public class Miecz extends Weapon {
+	
     public Miecz() {
-        super("Miecz", 4, 2);
+        super("Miecz", 4, 2, WeaponType.ONE_HANDED, 1);
     }
 
     @Override
@@ -18,11 +18,4 @@ public class Miecz extends AItemsFromTown implements IWeapon {
             //ustaw siłę z przedmiotu
         }
     }
-
-    //Nie koniecznie additional
-    // +1 do Siły
-    public int getAddtionalStats() {
-        return 1;
-    }
-	
 }
