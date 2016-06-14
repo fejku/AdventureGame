@@ -9,5 +9,5 @@ public class Waz extends EnemyStrenght {
     public Waz() {
         super("Wąż", 4);
     }    
-    //Ogromny wąż postanowił zamieszkać w tym Obszarze. Posotanie tu, aż ktoś go pokona.
+    //Ogromny wąż postanowił zamieszkać w tym Obszarze. Pozostanie tu, aż ktoś go pokona.
 }
