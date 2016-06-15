@@ -14,7 +14,7 @@ public abstract class Enemy extends ACard{
     private final int power;
 
     public Enemy(String name, int priority, int strength) {
-        super(name, priority);
+        super(name, priority, false, false);
         this.power = strength;
     }
 
@@ -23,7 +23,7 @@ public abstract class Enemy extends ACard{
     }
     
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void mainAction(Board board, Explorers explorers) {
         Explorer actExp = explorers.getActualExplorer();
         
         System.out.println("Przeciwnik " + getName() + " siła: " + getPower());

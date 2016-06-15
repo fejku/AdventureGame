@@ -131,6 +131,10 @@ items.add(new Topor());
     public List<Item> getItems() {
         return items;
     }    
+    
+    public List<Spell> getSpells() {
+        return spells;
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Gain">
@@ -283,11 +287,16 @@ items.add(new Topor());
             return false;
     }
     
-    public int getStrengthModifiers() {
+    public int getStrengthModifiers(boolean withWeapon) {
     	int strengthModifier = 0;
-        for (Weapon weapon: equippedWeapons)
-        	strengthModifier += weapon.getStrengthModifier();
+        if (withWeapon)
+            for (Weapon weapon: equippedWeapons)
+                strengthModifier += weapon.getStrengthModifier();
         return strengthModifier;
+    }
+    
+    public int getStrengthModifiers() {
+        return getStrengthModifiers(true);
     }
     
     public int getCraftModifiers() {
@@ -420,6 +429,7 @@ items.add(new Topor());
             if (equippedWeapons.size() > 0) {
                 if (dialog.chooseYesNo("Czy zmienić aktualną broń?")) {
                     int choice = dialog.chooseOption("Wybierz aktywną broń.", weaponsNames);
+                    equippedWeapons.clear();
                     equippedWeapons.add(weapons.get(choice));
                 }
             } else {

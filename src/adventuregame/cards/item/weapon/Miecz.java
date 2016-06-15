@@ -6,16 +6,6 @@ import adventuregame.explorer.Explorers;
 public class Miecz extends Weapon {
 	
     public Miecz() {
-        super("Miecz", 4, 2, WeaponType.ONE_HANDED, 1);
-    }
-
-    @Override
-    public void Action(Board board, Explorers explorers) {
-        explorers.getActualExplorer().gainItem(board.getDialog(), this);
-
-        if (board.getDialog().chooseYesNo("Czy chcesz ustawić jako główną broń?")) {
-            //usuń poprzedni 
-            //ustaw siłę z przedmiotu
-        }
+        super("Miecz", 4, 1, WeaponType.ONE_HANDED, 2);
     }
 }

@@ -1,6 +1,7 @@
-package adventuregame.cards.item;
+package adventuregame.cards.item.armour;
 
 import adventuregame.board.Board;
+import adventuregame.cards.item.Item;
 import adventuregame.explorer.Explorers;
 
 public class Helm extends Item {
@@ -10,7 +11,7 @@ public class Helm extends Item {
     }
 
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void mainAction(Board board, Explorers explorers) {
         // TODO Auto-generated method stub
 
     }

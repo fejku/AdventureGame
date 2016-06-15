@@ -8,13 +8,13 @@ public abstract class Item extends ACard {
 	private final int costInTown; //??
 
     public Item(String name, int amountInDeck) {
-        super(name, 5);
+        super(name, 5, false, true);
         this.amountInDeck = amountInDeck;
         this.costInTown = 0;
     }
     
     public Item(String name, int amountInDeck, int costInTown) {
-        super(name, 5);
+        super(name, 5, false, true);
         this.amountInDeck = amountInDeck;
     	this.costInTown = costInTown;
     }

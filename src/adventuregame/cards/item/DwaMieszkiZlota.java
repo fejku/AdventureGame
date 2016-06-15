@@ -11,11 +11,11 @@ import adventuregame.explorer.Explorers;
 public class DwaMieszkiZlota extends ACard {
 
     public DwaMieszkiZlota() {
-        super("Dwa mieszki złota", 5);
+        super("Dwa mieszki złota", 5, false, false);
     }
     
     @Override
-    public void Action(Board board, Explorers explorers) {
+    public void mainAction(Board board, Explorers explorers) {
         explorers.getActualExplorer().gainGold(2);
     }
     

@@ -5,6 +5,7 @@ import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorers;
 import adventuregame.explorer.FightResult;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,12 +28,27 @@ public abstract class FieldGetCard extends Field {
         //Dodanie brakującej ilości kart do pola
         getCards().addAll(board.getCardFromDeck(amountMissingCards));
         
-        for(ACard card : getCards()) {
+        Iterator<ACard> itCards = getCards().iterator();
+        while (itCards.hasNext()) {
+            ACard card = itCards.next();
             //Sprawdzenie czy są karty z priorytetem 1
             if (card.getPriority() == 1)
                 //Akcja karty
-                card.Action(board, explorers);
+                card.action(board, explorers);
+            if (!card.isStaying())
+                itCards.remove(); 
+            if (card.isInterupting())
+                return;
         }
+        
+//        for(ACard card : getCards()) {
+//            //Sprawdzenie czy są karty z priorytetem 1
+//            if (card.getPriority() == 1)
+//                //Akcja karty
+//                card.action(board, explorers);
+//            if (!card.isStaying())
+//                getCards().remove(card);
+//        }
         //Przerwanie akcji??
         
         List<ACard> enemys = new ArrayList<>();        
@@ -40,7 +56,9 @@ public abstract class FieldGetCard extends Field {
             if (card.getPriority() == 2)
                 enemys.add(card);
         }
-        FightResult fr = explorers.getActualExplorer().fight(enemys);
+        if (enemys.size() > 0) {
+            FightResult fr = explorers.getActualExplorer().fight(enemys);
+        }
         
         //Sprawdzenie czy są karty z 2
         //Walka
@@ -54,9 +72,9 @@ public abstract class FieldGetCard extends Field {
         
         
         
-        for (int i = 0; i < getCards().size(); i++) {
-            getCards().get(i).Action(board, explorers);
-        }
+//        for (int i = 0; i < getCards().size(); i++) {
+//            getCards().get(i).Action(board, explorers);
+//        }
     }
     
 }

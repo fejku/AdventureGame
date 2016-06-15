@@ -61,4 +61,8 @@ public class Explorers {
         }
     	return otherExplorersOnField;
     }
+    
+    public List<Explorer> getExplorers() {
+        return pickedExplorers;
+    }
 }

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adventuregame.board.Board;
-import adventuregame.cards.item.Helm;
+import adventuregame.cards.item.armour.Helm;
 import adventuregame.cards.item.Item;
-import adventuregame.cards.item.Tarcza;
-import adventuregame.cards.item.Zbroja;
+import adventuregame.cards.item.armour.Tarcza;
+import adventuregame.cards.item.armour.Zbroja;
 import adventuregame.cards.item.weapon.Miecz;
 import adventuregame.cards.item.weapon.Topor;
 import adventuregame.explorer.Explorer;

@@ -15,7 +15,7 @@ import adventuregame.board.fields.Straznik;
 import adventuregame.board.fields.Wioska;
 import adventuregame.board.fields.Wzgorza;
 import adventuregame.cards.ACard;
-import adventuregame.cards.enemy.strength.Waz;
+import adventuregame.cards.events.MagicznyCyklon;
 import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
@@ -31,7 +31,9 @@ import java.util.List;
 public class Board {
     private final List<Field> fields;
     private List<ACard> cards;
+    private List<ACard> usedAdventureCards;
     private List<Spell> spells;
+    private List<Spell> usedSpells;
     private Equipments equipments;
     private final Dice dice;
     private final IDialog dialog;
@@ -42,7 +44,9 @@ public class Board {
         this.fields = initFields();
         initNeighbors();     
         this.cards = initCards();
+        this.usedAdventureCards = new ArrayList<>();
         this.spells = initSpells();
+        this.usedSpells = new ArrayList<>();
         equipments = new Equipments();
     }
     
@@ -113,7 +117,7 @@ public class Board {
         
         moves.addAll(explorer.getNextMoves());
 
-        int diceResult = 6;//dice.throwDice();
+        int diceResult = 1;//dice.throwDice();
         
         //Left
         neighbour = fields.get(actualPosition).getNeighbor(Field.LEFT);
@@ -145,7 +149,7 @@ public class Board {
     public List<ACard> initCards() {   
         List<ACard> cards = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            cards.add(new Waz());
+            cards.add(new MagicznyCyklon());
         }
         return cards;
     }
@@ -186,5 +190,13 @@ public class Board {
        
     public Equipments getEquipment() {
     	return equipments;
+    }
+    
+    public List<Spell> getUsedSpells() {
+        return usedSpells;
+    }
+    
+    public List<ACard> getUsedAdventureCards() {
+        return usedAdventureCards;
     }
 }
