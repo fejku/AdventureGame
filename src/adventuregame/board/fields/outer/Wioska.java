@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package adventuregame.board.fields;
+package adventuregame.board.fields.outer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.miasto.ICitizen;
-import adventuregame.board.fields.miasto.Kowal;
-import adventuregame.board.fields.miasto.Lekarz;
-import adventuregame.board.fields.miasto.Mystic;
+import adventuregame.board.fields.Field;
+import adventuregame.board.fields.outer.miasto.ICitizen;
+import adventuregame.board.fields.outer.miasto.Kowal;
+import adventuregame.board.fields.outer.miasto.Lekarz;
+import adventuregame.board.fields.outer.miasto.Mystic;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 
@@ -20,7 +16,7 @@ import adventuregame.explorer.Explorers;
  *
  * @author Fake
  */
-public class Wioska extends Field{
+public class Wioska extends OuterField {
 
     public Wioska() {
         super("Wioska");

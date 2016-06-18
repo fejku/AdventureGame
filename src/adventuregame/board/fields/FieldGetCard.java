@@ -16,8 +16,8 @@ public abstract class FieldGetCard extends Field {
 
     private final int amountCardsOnField;
     
-    public FieldGetCard(String name, int amountCardsOnField) {
-        super(name);
+    public FieldGetCard(String name, Region region, int amountCardsOnField) {
+        super(name, region);
         this.amountCardsOnField = amountCardsOnField;
     }
 

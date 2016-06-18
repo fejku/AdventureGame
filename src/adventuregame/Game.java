@@ -17,6 +17,7 @@ public class Game {
         CHECK_LOST_TURN,
         BEFORE_ROLL,
         MOVEMENT_CHOICE,
+        BEFORE_FIELD_ACTION,
         POST_MOVEMENT,
         TURN_END,        
         GAME_END
@@ -33,7 +34,7 @@ public class Game {
         actualState = GameState.CHECK_LOST_TURN;
         dialog = new ConsoleDialog();
         dice = new Dice();
-        board = new Board(dialog, dice);
+        board = new Board(dialog, dice, actualState);
         explorers = new Explorers();
     }
     
@@ -69,6 +70,9 @@ public class Game {
                 }
                 int selectedMove = board.getDialog().choose(moves.size());
                 explorers.getActualExplorer().setActualPosition(moves.get(selectedMove));
+                actualState = GameState.BEFORE_FIELD_ACTION;
+                break;
+            case BEFORE_FIELD_ACTION:
                 actualState = GameState.POST_MOVEMENT;
                 break;
             case POST_MOVEMENT:

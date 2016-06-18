@@ -1,6 +1,8 @@
-package adventuregame.board.fields;
+package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
+import adventuregame.board.fields.Field;
+import adventuregame.board.fields.FieldType;
 import adventuregame.explorer.Explorers;
 import adventuregame.explorer.FightType;
 
@@ -8,7 +10,7 @@ import adventuregame.explorer.FightType;
  *
  * @author Fake
  */
-public class Gospoda extends Field {
+public class Gospoda extends OuterField {
     public Gospoda() {
         super("Gospoda");
     }

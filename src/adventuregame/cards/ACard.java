@@ -21,20 +21,24 @@ public abstract class ACard implements ICard {
         this.stay = stay;
     }
     
-    public void action(Board board, Explorers explorers) {
+    @Override
+    public final void action(Board board, Explorers explorers) {
         board.getDialog().message("Wylosowana karta: " + getName());
         mainAction(board, explorers);
         afterAction(board, explorers);
     }
 
+    @Override
     public String getName() {
         return name;
     }
     
+    @Override
     public int getPriority() {
         return priority;
     }
     
+    @Override
     public void afterAction(Board board, Explorers explorers) {};
     
     public boolean isInterupting() {

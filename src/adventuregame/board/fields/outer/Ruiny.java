@@ -1,26 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package adventuregame.board.fields;
+package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
+import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorers;
 
 /**
  *
  * @author Fake
  */
-public class Puszcza extends Field {
-    public Puszcza() {
-        super("Puszcza");
+public class Ruiny extends OuterField {
+
+    public Ruiny() {
+        super("Ruiny");        
     }
 
     @Override
     public void action(Board board, Explorers explorers) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
     
 }

@@ -19,16 +19,20 @@ public abstract class Field {
     public static final int FIELDS_OUTER_QUANTITY_TOP = 24, FIELDS_MIDDLE_QUANTITY_TOP = 40, FIELDS_INNER_QUANTITY_TOP = 48;
     public static final int GOSPODA = 0, MIASTO = 6, SKALY = 10, KAPLICZKA = 12, STRAZNIK = 14, 
             CMENTARZ = 16, WIOSKA = 18, LAS = 20, RUINY = 22,
-            SWIATYNIA = 24;
+            SWIATYNIA = 99, UKRYTA_DOLINA = 99, PRZEKLETA_POLANA = 99;
+    
+    public enum Region {OUTER, MIDDLE, INNER, CROWN};
     
     private final String name;    
     private final int[] neighbors;
+    private final Region region;
     
     private List<ACard> cards;
    
-    public Field(String name) {
+    public Field(String name, Region region) {
         this.name = name;
         neighbors = new int[4];
+        this.region = region;
         cards = new ArrayList<>();
     }
     
@@ -46,6 +50,10 @@ public abstract class Field {
     
     public List<ACard> getCards() {
         return cards;
+    }
+    
+    public Region getRegion() {
+        return region;
     }
     
     public void removeCardFromField(ACard card) {

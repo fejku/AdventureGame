@@ -1,12 +1,12 @@
-package adventuregame.board.fields.miasto;
+package adventuregame.board.fields.outer.miasto;
 
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorer;
 
-public class Cyrulik extends ACitizen {
+public class Lekarz extends ACitizen {
 
-    public Cyrulik() {
-        super("Cyrulik");
+    public Lekarz() {
+        super("Lekarz");
     }
 
     @Override
@@ -15,13 +15,10 @@ public class Cyrulik extends ACitizen {
             return true;
         else
             return false;
-    }
-	
-    /**
-     * Odzyskujesz do 2 punktów życia płacąc za każdy z nich 1 sztukę złota.
-     * @param board
-     * @param explorer Aktualny Poszukiwacz
-     */
+    };
+
+    //HEALER: The Healer will restore Lives at the price of 1 Gold Coin each, back
+    //up to your starting quota	
     @Override
     public void action(Board board, Explorer explorer) {
         int maxRegainLife = explorer.getMaxRegainLife();
@@ -29,9 +26,6 @@ public class Cyrulik extends ACitizen {
             explorer.regainLife();
             explorer.loseGold();
         } else {
-            //Mozna odzyskać maksymalnie dwa punkty
-            if (maxRegainLife > 2)
-                maxRegainLife = 2;
             String[] lifeAmount = new String[maxRegainLife];
             for (int i = 1; i < maxRegainLife; i++)
                 lifeAmount[i] = Integer.toString(i);
@@ -40,4 +34,5 @@ public class Cyrulik extends ACitizen {
             explorer.loseGold(choice);
         }
     }
+
 }

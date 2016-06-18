@@ -1,6 +1,7 @@
-package adventuregame.board.fields;
+package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
+import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
@@ -10,7 +11,7 @@ import adventuregame.utils.IDialog;
  *
  * @author Fake
  */
-public class Cmentarz extends Field{
+public class Cmentarz extends OuterField {
     public Cmentarz() {
         super("Cmentarz");
     }

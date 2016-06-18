@@ -13,7 +13,7 @@ import adventuregame.explorer.Explorers;
 public class MagicznyCyklon extends Event {
 
     public MagicznyCyklon() {
-        super("Magiczny cyklon", false, false);
+        super("Magiczny cyklon", false);
     }
 
     @Override

@@ -1,10 +1,11 @@
-package adventuregame.board.fields;
+package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.miasto.Alchemik;
-import adventuregame.board.fields.miasto.Cyrulik;
-import adventuregame.board.fields.miasto.Czarodziejka;
-import adventuregame.board.fields.miasto.ICitizen;
+import adventuregame.board.fields.Field;
+import adventuregame.board.fields.outer.miasto.Alchemik;
+import adventuregame.board.fields.outer.miasto.Cyrulik;
+import adventuregame.board.fields.outer.miasto.Czarodziejka;
+import adventuregame.board.fields.outer.miasto.ICitizen;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author Fake
  */
-public class Miasto extends Field {
+public class Miasto extends OuterField {
     public Miasto() {
         super("Miasto");
     }

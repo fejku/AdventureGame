@@ -1,4 +1,4 @@
-package adventuregame.board.fields.miasto;
+package adventuregame.board.fields.outer.miasto;
 
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorer;

@@ -1,20 +1,24 @@
 package adventuregame.board;
 
-import adventuregame.board.fields.Cmentarz;
+import adventuregame.Game;
+import adventuregame.Game.GameState;
+import adventuregame.board.fields.outer.Cmentarz;
 import adventuregame.board.fields.Field;
-import adventuregame.board.fields.Gospoda;
-import adventuregame.board.fields.Kapliczka;
-import adventuregame.board.fields.Las;
-import adventuregame.board.fields.Miasto;
-import adventuregame.board.fields.Pola;
-import adventuregame.board.fields.Puszcza;
-import adventuregame.board.fields.Rowniny;
-import adventuregame.board.fields.Ruiny;
-import adventuregame.board.fields.Skaly;
-import adventuregame.board.fields.Straznik;
-import adventuregame.board.fields.Wioska;
-import adventuregame.board.fields.Wzgorza;
+import adventuregame.board.fields.outer.Gospoda;
+import adventuregame.board.fields.outer.Kapliczka;
+import adventuregame.board.fields.outer.Las;
+import adventuregame.board.fields.outer.Miasto;
+import adventuregame.board.fields.outer.Pola;
+import adventuregame.board.fields.outer.Puszcza;
+import adventuregame.board.fields.outer.Rowniny;
+import adventuregame.board.fields.outer.Ruiny;
+import adventuregame.board.fields.outer.Skaly;
+import adventuregame.board.fields.outer.Straznik;
+import adventuregame.board.fields.outer.Wioska;
+import adventuregame.board.fields.outer.Wzgorza;
 import adventuregame.cards.ACard;
+import adventuregame.cards.events.Burza;
+import adventuregame.cards.events.Diablik;
 import adventuregame.cards.events.MagicznyCyklon;
 import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorer;
@@ -37,10 +41,12 @@ public class Board {
     private Equipments equipments;
     private final Dice dice;
     private final IDialog dialog;
+    private GameState gameState;
             
-    public Board(IDialog dialog, Dice dice) {
+    public Board(IDialog dialog, Dice dice, GameState gameState) {
         this.dialog = dialog;
         this.dice = dice;
+        this.gameState = gameState;
         this.fields = initFields();
         initNeighbors();     
         this.cards = initCards();
@@ -149,7 +155,8 @@ public class Board {
     public List<ACard> initCards() {   
         List<ACard> cards = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            cards.add(new MagicznyCyklon());
+            //cards.add(new MagicznyCyklon());
+            cards.add(new Burza());
         }
         return cards;
     }
@@ -175,6 +182,14 @@ public class Board {
     
     public IDialog getDialog() {
         return dialog;
+    }
+    
+    public GameState getGameState() {
+        return gameState;
+    }
+    
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
     
     public List<Spell> initSpells() {

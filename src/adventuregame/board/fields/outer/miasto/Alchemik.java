@@ -1,4 +1,4 @@
-package adventuregame.board.fields.miasto;
+package adventuregame.board.fields.outer.miasto;
 
 import java.util.List;
 
