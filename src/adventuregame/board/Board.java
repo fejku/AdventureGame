@@ -19,6 +19,7 @@ import adventuregame.board.fields.outer.Wzgorza;
 import adventuregame.cards.ACard;
 import adventuregame.cards.events.Burza;
 import adventuregame.cards.events.Diablik;
+import adventuregame.cards.events.DzienDuchow;
 import adventuregame.cards.events.MagicznyCyklon;
 import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorer;
@@ -156,7 +157,8 @@ public class Board {
         List<ACard> cards = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             //cards.add(new MagicznyCyklon());
-            cards.add(new Burza());
+//            cards.add(new Burza());
+            cards.add(new DzienDuchow());
         }
         return cards;
     }

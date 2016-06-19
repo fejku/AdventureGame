@@ -15,7 +15,7 @@ public class Rowniny extends OuterField {
 
     @Override
     public void action(Board board, Explorers explorers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

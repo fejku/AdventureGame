@@ -1,5 +1,6 @@
 package adventuregame.cards.enemy;
 
+import adventuregame.Game.GameState;
 import adventuregame.board.Board;
 import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorer;
@@ -46,10 +47,7 @@ public abstract class Enemy extends ACard{
             //Strata punktu wytrzymałości
             System.out.println("Przeciwnik wygral :(");
             if (actExp.loseLife())
-                //Usun gracza
-                if (explorers.removeActualExplorer())
-                    //koniec gry albo wybranie kolejnej postaci
-                    {}
+               board.setGameState(GameState.TURN_END);
             System.out.println(actExp.writeStats());
         }
     }

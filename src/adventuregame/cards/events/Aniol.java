@@ -1,5 +1,6 @@
 package adventuregame.cards.events;
 
+import adventuregame.Game.GameState;
 import adventuregame.board.Board;
 import adventuregame.explorer.Explorers;
 
@@ -22,7 +23,8 @@ public class Aniol extends Event {
                 explorers.getActualExplorer().gainLife();
                 break;
             case ZLY:
-                explorers.getActualExplorer().loseLife();
+                if (explorers.getActualExplorer().loseLife())
+                    board.setGameState(GameState.TURN_END);
                 break;
         }
     }

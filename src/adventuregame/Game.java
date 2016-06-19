@@ -1,10 +1,12 @@
 package adventuregame;
 
 import adventuregame.board.Board;
+import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.ConsoleDialog;
 import adventuregame.utils.Dice;
 import adventuregame.utils.IDialog;
+import java.util.ArrayList;
 import java.util.List;
 
 /**

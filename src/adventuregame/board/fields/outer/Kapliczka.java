@@ -1,5 +1,6 @@
 package adventuregame.board.fields.outer;
 
+import adventuregame.Game.GameState;
 import adventuregame.board.Board;
 import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorer;
@@ -21,7 +22,7 @@ public class Kapliczka extends OuterField {
         Explorer actualExplorer = explorers.getActualExplorer();
         switch(actualExplorer.getCharacter()) {
             case ZLY:
-            	evilAction(board.getDialog(), actualExplorer);
+            	evilAction(board, actualExplorer);
                 break;
             case NEUTRALNY:
             	neutralAction(board.getDialog(), actualExplorer);
@@ -33,9 +34,10 @@ public class Kapliczka extends OuterField {
         }
     }
     
-    private void evilAction(IDialog dialog, Explorer explorer) {
-        dialog.message("Tracisz 1 punkt wytrzymałości.");
-        explorer.loseLife();
+    private void evilAction(Board board, Explorer explorer) {
+        board.getDialog().message("Tracisz 1 punkt wytrzymałości.");
+        if (explorer.loseLife())
+            board.setGameState(GameState.GAME_END);
     }
     
     private void neutralAction(IDialog dialog, Explorer explorer) {

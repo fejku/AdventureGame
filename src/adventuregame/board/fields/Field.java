@@ -1,5 +1,7 @@
 package adventuregame.board.fields;
 
+import adventuregame.Game;
+import adventuregame.Game.GameState;
 import adventuregame.board.Board;
 import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorer;
@@ -73,7 +75,8 @@ public abstract class Field {
         
         fightResult = explorer.fight(board, type, amount);
         if (fightResult == FightResult.LOSE) {
-            explorer.loseLife();
+            if (explorer.loseLife())
+                board.setGameState(GameState.TURN_END);
         }
     }
     
