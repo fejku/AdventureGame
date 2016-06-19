@@ -1,12 +1,8 @@
 package adventuregame.board.fields.outer;
 
-import adventuregame.Game;
-import adventuregame.Game.GameState;
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
-import adventuregame.utils.Dice;
 import adventuregame.utils.IDialog;
 
 /**
@@ -36,8 +32,7 @@ public class Cmentarz extends OuterField {
     
     private void goodAction(Board board, Explorer explorer) {
         board.getDialog().message("Tracisz 1 punkt wytrzymałości.");
-        if (explorer.loseLife())
-            board.setGameState(GameState.TURN_END);
+        explorer.loseLife(board);
     }
     
     private void neutralAction(IDialog dialog) {
@@ -49,8 +44,7 @@ public class Cmentarz extends OuterField {
         case 1:
             //1. Tracisz 1 turę.
             board.getDialog().message("Tracisz 1 turę.");
-            if (explorer.loseLife())
-                board.setGameState(GameState.TURN_END);
+            explorer.loseLife(board);
             break;
         case 2: 
         case 3:

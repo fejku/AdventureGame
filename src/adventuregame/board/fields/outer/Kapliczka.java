@@ -1,8 +1,6 @@
 package adventuregame.board.fields.outer;
 
-import adventuregame.Game.GameState;
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
@@ -36,8 +34,7 @@ public class Kapliczka extends OuterField {
     
     private void evilAction(Board board, Explorer explorer) {
         board.getDialog().message("Tracisz 1 punkt wytrzymałości.");
-        if (explorer.loseLife())
-            board.setGameState(GameState.GAME_END);
+        explorer.loseLife(board);
     }
     
     private void neutralAction(IDialog dialog, Explorer explorer) {

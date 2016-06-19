@@ -48,8 +48,7 @@ public class Podatek extends Event{
             if (explorer.getGold() > 0)
                 explorer.loseGold();
             else {
-                if (explorer.loseLife())
-                    board.setGameState(GameState.TURN_END);
+                explorer.loseLife(board);
             }
         }
     }

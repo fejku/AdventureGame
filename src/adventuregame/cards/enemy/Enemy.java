@@ -46,8 +46,7 @@ public abstract class Enemy extends ACard{
         else {
             //Strata punktu wytrzymałości
             System.out.println("Przeciwnik wygral :(");
-            if (actExp.loseLife())
-               board.setGameState(GameState.TURN_END);
+            actExp.loseLife(board);
             System.out.println(actExp.writeStats());
         }
     }

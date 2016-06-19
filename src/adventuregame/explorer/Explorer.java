@@ -1,5 +1,7 @@
 package adventuregame.explorer;
 
+import adventuregame.Game;
+import adventuregame.Game.GameState;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -200,16 +202,18 @@ items.add(new Topor());
             craft -= amount;
     }
     
-    public boolean loseLife() {
-        return loseLife(1);
+    public void loseLife(Board board) {
+        loseLife(1, board);
     }
     
-    public boolean loseLife(int lifeAmount) {
+    public void loseLife(int lifeAmount, Board board) {
         life -= lifeAmount;
-        if (life>0)
-            return false;
-        else
-            return true;
+        if (life < 1)
+            die(board);
+    }
+    
+    public void die(Board board) {
+        board.setGameState(GameState.TURN_END);
     }
     
     public void loseTurn() {
