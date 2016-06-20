@@ -18,7 +18,10 @@ public abstract class Field {
     public static final int LEFT = 1, RIGHT = 2, TOP = 3, BOTTOM = 4;
     public static final int FIELDS_OUTER_QUANTITY_TOP = 24, FIELDS_MIDDLE_QUANTITY_TOP = 40, FIELDS_INNER_QUANTITY_TOP = 48;
     public static final int GOSPODA = 0, MIASTO = 6, SKALY = 10, KAPLICZKA = 12, STRAZNIK = 14, 
-            CMENTARZ = 16, WIOSKA = 18, LAS = 20, RUINY = 22,
+            CMENTARZ = 16, WIOSKA = 18, LAS = 20, 
+            //MIDDLE
+            RUINY = 99, OAZA = 99,
+            //INNER
             SWIATYNIA = 99, UKRYTA_DOLINA = 99, PRZEKLETA_POLANA = 99;
     
     public enum Region {OUTER, MIDDLE, INNER, CROWN};
@@ -28,12 +31,14 @@ public abstract class Field {
     private final Region region;
     
     private List<ACard> cards;
+    private int amountGoldOnField;
    
     public Field(String name, Region region) {
         this.name = name;
         neighbors = new int[4];
         this.region = region;
         cards = new ArrayList<>();
+        amountGoldOnField = 0;
     }
     
     public String getName() {
@@ -56,6 +61,14 @@ public abstract class Field {
         return region;
     }
     
+    public int getAmountGoldOnField() {
+    	return amountGoldOnField;
+    }
+    
+    public void setAmountGoldOnField(int amount) {
+    	this.amountGoldOnField = amount;
+    }
+    
     public void removeCardFromField(ACard card) {
     	cards.remove(card);
     }
@@ -66,6 +79,10 @@ public abstract class Field {
         } else {
             return false;
         }
+    }
+    
+    public void putCardOnField(ACard card) {
+    	this.cards.add(card);
     }
     
     public void fightWithoutCard(Board board, Explorer explorer, FightType type, int amount) {
