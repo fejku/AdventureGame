@@ -81,6 +81,7 @@ public class Game {
                 if(board.isCardOnField(explorers.getActualExplorer().getActualPosition())) {
                     //Akcja karty
                     //b.
+                    board.fieldAction(explorers);
                 } else {
                     //Akcja pola
                     board.fieldAction(explorers);
