@@ -4,6 +4,7 @@ import adventuregame.Game;
 import adventuregame.Game.GameState;
 import adventuregame.board.fields.outer.Cmentarz;
 import adventuregame.board.fields.Field;
+import adventuregame.board.fields.Field.Region;
 import adventuregame.board.fields.outer.Gospoda;
 import adventuregame.board.fields.outer.Kapliczka;
 import adventuregame.board.fields.outer.Las;
@@ -21,6 +22,7 @@ import adventuregame.cards.events.Burza;
 import adventuregame.cards.events.Diablik;
 import adventuregame.cards.events.DzienDuchow;
 import adventuregame.cards.events.MagicznyCyklon;
+import adventuregame.cards.events.Wulkan;
 import adventuregame.cards.spells.Spell;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
@@ -158,7 +160,8 @@ public class Board {
         for (int i = 0; i < 10; i++) {
             //cards.add(new MagicznyCyklon());
 //            cards.add(new Burza());
-            cards.add(new DzienDuchow());
+//            cards.add(new DzienDuchow());
+cards.add(new Wulkan());
         }
         return cards;
     }
@@ -215,5 +218,14 @@ public class Board {
     
     public List<ACard> getUsedAdventureCards() {
         return usedAdventureCards;
+    }
+    
+    public List<Field> getFieldsByRegion(Region region) {
+        List<Field> fieldsInRegion = new ArrayList<>();
+        for (Field field : fields)
+            if (field.getRegion() == region)
+                fieldsInRegion.add(field);
+        
+        return fieldsInRegion;
     }
 }
