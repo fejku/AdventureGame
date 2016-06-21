@@ -10,9 +10,10 @@ import adventuregame.explorer.Explorers;
 public abstract class ACard implements ICard {
     
     private final String name;
-    private final int priority;
-    private final boolean interrup;
+    private final int priority;   
     private final boolean stay;
+    
+    private boolean interrup;
     
     public ACard(String name, int priority, boolean interrupt, boolean stay) {
         this.name = name;
@@ -47,5 +48,9 @@ public abstract class ACard implements ICard {
     
     public boolean isStaying() {
         return stay;
+    }
+    
+    public void setInterrup(boolean interrupt) {
+        this.interrup = interrupt;
     }
 }

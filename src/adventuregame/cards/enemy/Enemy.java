@@ -11,15 +11,23 @@ import adventuregame.explorer.Explorers;
  */
 public abstract class Enemy extends ACard{
     
+    public enum EnemyType {DEMON, OZYWIENIEC, POTWOR, DUCH, SMOK, KULT, ZWIERZE, OBCY, UNIKAT}
+        
     private final int power;
+    private final EnemyType enemyType;
 
-    public Enemy(String name, int priority, int strength) {
+    public Enemy(String name, int priority, int strength, EnemyType enemyType) {
         super(name, priority, false, false);
         this.power = strength;
+        this.enemyType = enemyType;
     }
 
     public int getPower() {
         return power;
+    }
+
+    public EnemyType getEnemyType() {
+        return enemyType;
     }
     
     @Override

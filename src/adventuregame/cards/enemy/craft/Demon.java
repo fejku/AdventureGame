@@ -10,6 +10,6 @@ import adventuregame.explorer.Explorers;
 public class Demon extends EnemyCraft {
     
     public Demon() {
-        super("Demon", 10);
+        super("Demon", 10, EnemyType.DEMON);
     }   
 }
