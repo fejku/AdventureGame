@@ -1,22 +1,14 @@
 package adventuregame.board.fields.outer;
 
-import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
-import adventuregame.explorer.Explorers;
+import adventuregame.board.fields.FieldGetCard;
 
 /**
  *
  * @author Fake
  */
-public class Rowniny extends OuterField {
-    public Rowniny() {
-        super("Równiny");
-    }
+public class Rowniny extends FieldGetCard {
 
-    @Override
-    public void action(Board board, Explorers explorers) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+	public Rowniny() {
+		super("Równiny", Region.OUTER, 1);
+	}
 }
