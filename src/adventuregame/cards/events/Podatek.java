@@ -1,13 +1,13 @@
 package adventuregame.cards.events;
 
-import adventuregame.Game.GameState;
+import java.util.ArrayList;
+import java.util.List;
+
 import adventuregame.board.Board;
 import adventuregame.board.fields.Field.Region;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.ExplorerCharacter;
 import adventuregame.explorer.Explorers;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
