@@ -1,42 +1,29 @@
 package adventuregame;
 
+import java.util.List;
+
 import adventuregame.board.Board;
-import adventuregame.explorer.Explorer;
+import adventuregame.board.Board.GameState;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.ConsoleDialog;
 import adventuregame.utils.Dice;
 import adventuregame.utils.IDialog;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Fake
  */
 public class Game {
-    
-    public enum GameState {
-        CHECK_LOST_TURN,
-        BEFORE_ROLL,
-        MOVEMENT_CHOICE,
-        BEFORE_FIELD_ACTION,
-        POST_MOVEMENT,
-        TURN_END,        
-        GAME_END
-    }
-    
+
     private final Board board;
     private final Explorers explorers;
     private final IDialog dialog;
-    private final Dice dice;
-
-    private GameState actualState;        
+    private final Dice dice;        
     
     public Game() {
-        actualState = GameState.CHECK_LOST_TURN;
         dialog = new ConsoleDialog();
         dice = new Dice();
-        board = new Board(dialog, dice, actualState);
+        board = new Board(dialog, dice);
         explorers = new Explorers();
     }
     
@@ -45,25 +32,25 @@ public class Game {
     }
     
     public void mainLoop() {
-        while(actualState != GameState.GAME_END) {
+        while(board.getGameState() != GameState.GAME_END) {
             turn();
         }
     }
     
     private void turn() {
-        switch(actualState) {
+        switch(board.getGameState()) {
             case CHECK_LOST_TURN:
                 board.getDialog().message("************* POCZATEK TURY *******************");
                 if (explorers.getActualExplorer().isLosesTurn()) {
                     explorers.getActualExplorer().passLoseTurn();
-                    actualState = GameState.TURN_END;
+                    board.setGameState(GameState.TURN_END);
                 } else {
-                    actualState = GameState.BEFORE_ROLL;
+                	board.setGameState(GameState.BEFORE_ROLL);
                 }
                 break;
             case BEFORE_ROLL:
                 board.getDialog().message(explorers.getActualExplorer().writeStats());
-                actualState = GameState.MOVEMENT_CHOICE;
+                board.setGameState(GameState.MOVEMENT_CHOICE);
                 break;
             case MOVEMENT_CHOICE:
                 List<Integer> moves = board.availableMoves(explorers.getActualExplorer());
@@ -72,10 +59,10 @@ public class Game {
                 }
                 int selectedMove = board.getDialog().choose(moves.size());
                 explorers.getActualExplorer().setActualPosition(moves.get(selectedMove));
-                actualState = GameState.BEFORE_FIELD_ACTION;
+                board.setGameState(GameState.BEFORE_FIELD_ACTION);                
                 break;
             case BEFORE_FIELD_ACTION:
-                actualState = GameState.POST_MOVEMENT;
+            	board.setGameState(GameState.POST_MOVEMENT);
                 break;
             case POST_MOVEMENT:
                 if(board.isCardOnField(explorers.getActualExplorer().getActualPosition())) {
@@ -87,12 +74,13 @@ public class Game {
                     board.fieldAction(explorers);
                 }
                 board.getDialog().message(explorers.getActualExplorer().writeStats());
-                actualState = GameState.TURN_END;
+                if (board.getGameState() == GameState.POST_MOVEMENT)
+                	board.setGameState(GameState.TURN_END);
                 break;
             case TURN_END:
                 explorers.nextExplorerTurn();
-                board.getDialog().message("************* KONIEC TURY *******************");   
-                actualState = GameState.CHECK_LOST_TURN;
+                board.getDialog().message("************* KONIEC TURY *******************");  
+                board.setGameState(GameState.CHECK_LOST_TURN);
                 break;
             case GAME_END:
                 //return GameState.GAME_END;
