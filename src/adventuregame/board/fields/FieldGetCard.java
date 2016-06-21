@@ -25,32 +25,35 @@ public abstract class FieldGetCard extends Field {
     public void action(Board board, Explorers explorers) {
         //Sprawdz ile kart dobrać
         int amountMissingCards = amountCardsOnField - getCards().size();
-        //Dodanie brakującej ilości kart do pola
-        getCards().addAll(board.getCardFromDeck(amountMissingCards));
+        //Karty jeszcze nie rozpatrzone np. Trzesienie ziemi nie może ich jeszcze zdjąć
+        List<ACard> newCards = board.getCardFromDeck(amountMissingCards);
+        //Wszystkie karty na tym polu
+        List<ACard> allCards = new ArrayList<>(); 
+		allCards.addAll(getCards());
+        allCards.addAll(newCards);
         
-        Iterator<ACard> itCards = getCards().iterator();
-        while (itCards.hasNext()) {
-            ACard card = itCards.next();
+        Iterator<ACard> iteratorCards = allCards.iterator();
+        while(iteratorCards.hasNext()) {
+        	ACard card = iteratorCards.next();
             //Sprawdzenie czy są karty z priorytetem 1
-            if (card.getPriority() == 1)
+            if (card.getPriority() == 1) {
                 //Akcja karty
                 card.action(board, explorers);
-            if (!card.isStaying())
-                itCards.remove(); 
-            if (card.isInterupting())
-                return;
+	            //Czy karta zostaje na polu
+	            if (card.isStaying())
+	            	getCards().add(card);
+	            else
+	            	iteratorCards.remove();
+	            //Czy karta kończy turę
+	            if (card.isInterupting()) { 
+	            	//Dodanie pozostałych nie rozpatrzonych kart do pola
+	            	getCards().clear();
+	            	getCards().addAll(allCards);
+	            	return;
+	            }
+            }
         }
-        
-//        for(ACard card : getCards()) {
-//            //Sprawdzenie czy są karty z priorytetem 1
-//            if (card.getPriority() == 1)
-//                //Akcja karty
-//                card.action(board, explorers);
-//            if (!card.isStaying())
-//                getCards().remove(card);
-//        }
-        //Przerwanie akcji??
-        
+               
         List<ACard> enemys = new ArrayList<>();        
         for(ACard card : getCards()) {
             if (card.getPriority() == 2)
@@ -68,13 +71,6 @@ public abstract class FieldGetCard extends Field {
         //wziecie itemu/przyjaciela
         //Sprawdzenie czy są karty z 5
         //akcja karty
-        
-        
-        
-        
-//        for (int i = 0; i < getCards().size(); i++) {
-//            getCards().get(i).Action(board, explorers);
-//        }
     }
     
 }
