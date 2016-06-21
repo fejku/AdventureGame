@@ -1,7 +1,7 @@
 package adventuregame.cards.events;
 
-import adventuregame.Game.GameState;
 import adventuregame.board.Board;
+import adventuregame.board.Board.GameState;
 import adventuregame.board.fields.Field.Region;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
