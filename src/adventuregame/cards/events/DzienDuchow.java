@@ -1,13 +1,12 @@
 package adventuregame.cards.events;
 
-import adventuregame.Game;
+import java.util.List;
+
 import adventuregame.board.Board;
+import adventuregame.board.Board.GameState;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.ExplorerCharacter;
 import adventuregame.explorer.Explorers;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  *
@@ -34,7 +33,7 @@ public class DzienDuchow extends Event {
         switch (board.getDice().throwDice()) {
             case 1:
                 explorer.loseTurn();
-                board.setGameState(Game.GameState.TURN_END);
+                board.setGameState(GameState.TURN_END);
                 break;
             case 2:
             case 3:
