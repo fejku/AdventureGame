@@ -1,7 +1,7 @@
 package adventuregame.cards.events;
 
-import adventuregame.Game.GameState;
 import adventuregame.board.Board;
+import adventuregame.board.Board.GameState;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.ExplorerCharacter;
 import adventuregame.explorer.Explorers;
@@ -20,8 +20,10 @@ public class ZlaCiemnosc extends Event {
 			if (explorer.getCharacter() != ExplorerCharacter.ZLY)
 				explorer.loseTurn();
 		
-		if (explorers.getActualExplorer().getCharacter() != ExplorerCharacter.ZLY)
+		if (explorers.getActualExplorer().getCharacter() != ExplorerCharacter.ZLY) {
+			setInterrup(true);
 			board.setGameState(GameState.TURN_END);
+		}
 	}
 
 }
