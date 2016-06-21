@@ -1,10 +1,11 @@
 package adventuregame.board;
 
-import adventuregame.Game;
-import adventuregame.Game.GameState;
-import adventuregame.board.fields.outer.Cmentarz;
+import java.util.ArrayList;
+import java.util.List;
+
 import adventuregame.board.fields.Field;
 import adventuregame.board.fields.Field.Region;
+import adventuregame.board.fields.outer.Cmentarz;
 import adventuregame.board.fields.outer.Gospoda;
 import adventuregame.board.fields.outer.Kapliczka;
 import adventuregame.board.fields.outer.Las;
@@ -18,24 +19,32 @@ import adventuregame.board.fields.outer.Straznik;
 import adventuregame.board.fields.outer.Wioska;
 import adventuregame.board.fields.outer.Wzgorza;
 import adventuregame.cards.ACard;
-import adventuregame.cards.events.Burza;
-import adventuregame.cards.events.Diablik;
-import adventuregame.cards.events.DzienDuchow;
-import adventuregame.cards.events.MagicznyCyklon;
+import adventuregame.cards.events.Patrol;
 import adventuregame.cards.events.Wulkan;
+import adventuregame.cards.events.ZlaCiemnosc;
 import adventuregame.cards.spells.Spell;
+import adventuregame.cards.stranger.Magik;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 import adventuregame.utils.Dice;
 import adventuregame.utils.IDialog;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Fake
  */
 public class Board {
+	
+    public enum GameState {
+        CHECK_LOST_TURN,
+        BEFORE_ROLL,
+        MOVEMENT_CHOICE,
+        BEFORE_FIELD_ACTION,
+        POST_MOVEMENT,
+        TURN_END,        
+        GAME_END
+    }
+    
     private final List<Field> fields;
     private List<ACard> cards;
     private List<ACard> usedAdventureCards;
@@ -46,10 +55,10 @@ public class Board {
     private final IDialog dialog;
     private GameState gameState;
             
-    public Board(IDialog dialog, Dice dice, GameState gameState) {
+    public Board(IDialog dialog, Dice dice) {
         this.dialog = dialog;
         this.dice = dice;
-        this.gameState = gameState;
+        this.gameState = GameState.CHECK_LOST_TURN;
         this.fields = initFields();
         initNeighbors();     
         this.cards = initCards();
@@ -157,6 +166,10 @@ public class Board {
     
     public List<ACard> initCards() {   
         List<ACard> cards = new ArrayList<>();
+        cards.add(new Wulkan());
+        cards.add(new Magik());        
+        cards.add(new Patrol());
+        cards.add(new ZlaCiemnosc());
         for (int i = 0; i < 10; i++) {
             //cards.add(new MagicznyCyklon());
 //            cards.add(new Burza());
