@@ -1,6 +1,5 @@
 package adventuregame.cards.enemy;
 
-import adventuregame.Game.GameState;
 import adventuregame.board.Board;
 import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorer;
