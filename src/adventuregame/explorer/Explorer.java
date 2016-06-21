@@ -1,21 +1,19 @@
 package adventuregame.explorer;
 
-import adventuregame.Game;
-import adventuregame.Game.GameState;
 import java.util.ArrayList;
 import java.util.List;
 
 import adventuregame.board.Board;
+import adventuregame.board.Board.GameState;
 import adventuregame.board.fields.Field;
 import adventuregame.board.fields.FieldType;
 import adventuregame.cards.ACard;
 import adventuregame.cards.enemy.Enemy;
 import adventuregame.cards.item.Item;
-import adventuregame.cards.item.weapon.Weapon;
 import adventuregame.cards.item.weapon.Miecz;
 import adventuregame.cards.item.weapon.Topor;
+import adventuregame.cards.item.weapon.Weapon;
 import adventuregame.cards.spells.Spell;
-import adventuregame.utils.ConsoleDialog;
 import adventuregame.utils.Constants;
 import adventuregame.utils.IDialog;
 
