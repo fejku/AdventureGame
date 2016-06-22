@@ -6,7 +6,7 @@ import java.util.List;
 import adventuregame.board.Board;
 import adventuregame.board.Board.GameState;
 import adventuregame.board.fields.Field;
-import adventuregame.board.fields.FieldType;
+import adventuregame.board.fields.Field.Region;
 import adventuregame.cards.ACard;
 import adventuregame.cards.enemy.Enemy;
 import adventuregame.cards.item.Item;
@@ -363,10 +363,10 @@ items.add(new Topor());
         nextMoves.add(fieldNr);
     }
     
-    public void addNextMove(FieldType fieldType, int actualExplorerPosition) {
+    public void addNextMove(Region region, int actualExplorerPosition) {
     	int bottom = 0, top = 0;
     	
-        switch(fieldType) {
+        switch(region) {
             case OUTER:
             	bottom = 0;
             	top = Field.FIELDS_OUTER_QUANTITY_TOP;

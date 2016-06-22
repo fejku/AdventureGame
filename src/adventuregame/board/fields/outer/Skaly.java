@@ -1,7 +1,6 @@
 package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorers;
 import adventuregame.explorer.FightType;
 
@@ -9,7 +8,7 @@ import adventuregame.explorer.FightType;
  *
  * @author Fake
  */
-public class Skaly extends OuterField {
+public class Skaly extends ActionField {
     public Skaly() {
         super("Skały");
     }

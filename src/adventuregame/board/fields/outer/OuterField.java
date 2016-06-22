@@ -8,8 +8,8 @@ import adventuregame.board.fields.Field;
  */
 public abstract class OuterField extends Field {
 
-    public OuterField(String name) {
-        super(name, Region.OUTER);
+    public OuterField(String name, int amountDrawingCards) {
+        super(name, Region.OUTER, amountDrawingCards);
     }
 
 }

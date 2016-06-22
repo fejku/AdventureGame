@@ -65,14 +65,8 @@ public class Game {
             	board.setGameState(GameState.POST_MOVEMENT);
                 break;
             case POST_MOVEMENT:
-                if(board.isCardOnField(explorers.getActualExplorer().getActualPosition())) {
-                    //Akcja karty
-                    //b.
-                    board.fieldAction(explorers);
-                } else {
-                    //Akcja pola
-                    board.fieldAction(explorers);
-                }
+                board.getField(explorers.getActualExplorer().getActualPosition()).getMissingCards(board);
+                board.fieldAction(explorers);
                 board.getDialog().message(explorers.getActualExplorer().writeStats());
                 if (board.getGameState() == GameState.POST_MOVEMENT)
                 	board.setGameState(GameState.TURN_END);

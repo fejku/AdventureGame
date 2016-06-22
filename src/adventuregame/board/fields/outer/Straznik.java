@@ -1,14 +1,13 @@
 package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorers;
 
 /**
  *
  * @author Fake
  */
-public class Straznik extends OuterField {
+public class Straznik extends ActionField {
     public Straznik() {
         super("Straznik");
     }

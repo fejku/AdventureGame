@@ -1,7 +1,6 @@
 package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.board.fields.outer.miasto.Alchemik;
 import adventuregame.board.fields.outer.miasto.Cyrulik;
 import adventuregame.board.fields.outer.miasto.Czarodziejka;
@@ -15,7 +14,7 @@ import java.util.List;
  *
  * @author Fake
  */
-public class Miasto extends OuterField {
+public class Miasto extends ActionField {
     public Miasto() {
         super("Miasto");
     }

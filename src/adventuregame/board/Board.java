@@ -166,16 +166,12 @@ public class Board {
     
     public List<ACard> initCards() {   
         List<ACard> cards = new ArrayList<>();
+        
         cards.add(new Wulkan());
         cards.add(new Magik());        
         cards.add(new Patrol());
         cards.add(new ZlaCiemnosc());
-        for (int i = 0; i < 10; i++) {
-            //cards.add(new MagicznyCyklon());
-//            cards.add(new Burza());
-//            cards.add(new DzienDuchow());
-cards.add(new Wulkan());
-        }
+        
         return cards;
     }
     

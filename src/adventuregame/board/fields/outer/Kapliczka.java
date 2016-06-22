@@ -10,7 +10,7 @@ import adventuregame.utils.IDialog;
  *
  * @author Fake
  */
-public class Kapliczka extends OuterField {
+public class Kapliczka extends ActionField {
     public Kapliczka() {
         super("Kapliczka");
     }

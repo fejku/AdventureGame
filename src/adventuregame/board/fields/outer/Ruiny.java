@@ -8,7 +8,7 @@ import adventuregame.explorer.Explorers;
  *
  * @author Fake
  */
-public class Ruiny extends OuterField {
+public class Ruiny extends ActionField {
 
     public Ruiny() {
         super("Ruiny");        

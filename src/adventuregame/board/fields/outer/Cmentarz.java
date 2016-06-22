@@ -9,7 +9,7 @@ import adventuregame.utils.IDialog;
  *
  * @author Fake
  */
-public class Cmentarz extends OuterField {
+public class Cmentarz extends ActionField {
     public Cmentarz() {
         super("Cmentarz");
     }

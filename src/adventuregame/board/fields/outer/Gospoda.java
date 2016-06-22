@@ -2,7 +2,6 @@ package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
 import adventuregame.board.fields.Field;
-import adventuregame.board.fields.FieldType;
 import adventuregame.explorer.Explorers;
 import adventuregame.explorer.FightType;
 
@@ -10,7 +9,7 @@ import adventuregame.explorer.FightType;
  *
  * @author Fake
  */
-public class Gospoda extends OuterField {
+public class Gospoda extends ActionField {
     public Gospoda() {
         super("Gospoda");
     }
@@ -41,7 +40,7 @@ public class Gospoda extends OuterField {
             case 5:
                 //Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.
                 board.getDialog().message("Czarownik obiecuje teleportować cię do dowolnego miejsca w tej krainie. To może być twój następny ruch.");            	
-                explorers.getActualExplorer().addNextMove(FieldType.OUTER, explorers.getActualExplorer().getActualPosition());                    
+                explorers.getActualExplorer().addNextMove(Region.OUTER, explorers.getActualExplorer().getActualPosition());                    
                 break;
             case 6:
                 //Przewoźnik ofiaruje ci przeprawę do Świątyni. To może być twój następny ruch.

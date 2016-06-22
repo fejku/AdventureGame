@@ -1,12 +1,42 @@
-+Diabeł; 1; Diabeł wpadł do ciebie z wizytą. Jeżeli jesteś Zły, otrzymujesz od niego 1 punkt Wytrzymałości, jeśli Dobry diabeł zabiera ci 1 punkt Wytrzymałości. Neutralnych diabeł ignoruje. Potem diabeł znika jak się pojawił. Odłoż tę Kartę.
-+Zaraza; 1; Zaraza grasuje w tej Krainie (tylko Zewnętrznej lub Środkowej). Wszyscy znajdujący się w niej Poszukiwacze tracą 1 punkt Wytrzymałości. Potem zaraza znika odłoż tę Kartę.
-+Patrol; 1; Patrol wojska usiłuje wprowadzić ład i porządek. Żołnierze odsyłają cię natychmiast na Obszar, z którego rozpoczynałeś grę i zadowoleni odmaszerowują do koszar. Odłóż tę Kartę.
-+Zbójcy; 1; Napada cię banda zbójców i rabuje wszystkie twoje Przedmioty i całe złoto. Ukrywają się swój łup w Oazie (połóż tam Karty Przedmiotów i żetony złota), potem wycofują się do swej kryjówki. Odłóż tę Kartę.
-Koniunkcja; 1; Gwiazdy ułożył się w tak szczególny sposób, że na czas jednej tury zostaje podwojona Moc wszystkich Duchów. Potem koniunkcja się kończy odłóż tę Kartę.
-Przekleństwo; 1; Przeklęta wiedźma - musisz ją zabrać jako swojego Przyjaciela. Wszyscy twoi Przyjaciele (z wyjątkiem Poltergeista) natychmiast cię opuszczają, odłoż ich Karty. Nie możesz zdobyć nowych Przyjaciół, aż się uwolnisz od wiedźmy, odwiedzając wiejskiego mędrca. Po wizycie u niego możesz odłożyć tę Kartę.
-Poltergeist; 1; Przyczepił się do ciebie złośliwy duch poltergeist. Musisz go zabrać jako Przyjaciela. Jego obecność przeszkadza ci tak bardzo, że możesz poruszczać się tylko jeden Obszar podczas tury. Możesz się go pozbyć przekraczając rzekę, w jakikolwiek sposób. Gdy to zrobisz, odłoż tę Kartę.
-+Wulkan; 1; Grzmoty o kłęby dymu oznajmieją o erupcji wulkanu. Wszyscy Nieznajomi, znajdujący się w tej Krainie zostają pochłonięci przez lawę odłoż ich Karty.
-Trzęsienie ziemi; 1; Krainą, w której się znajdujesz wstrząsa potężne trzęsienie ziemi. Rzuć kostką dla każdej Karty Przygód, która leży w tej Krainie i jest odkryta. Rezultat równy 1 lub 2 oczkom oznacza, że ta Karta wpada w powstałą w ziemi szczelinę należy ją odłożyć.
-+Zła ciemność; 1; Z Krainy Nicości nadciąga zła ciemność ogarniająca cały świat. Dobrzy i Neutralni Poszukiwacze tracą jedną turę. Później ciemność znika odłóż tę Kartę.
-Zamieć; 1; Nadeszła sroga zima i cały świat okrył się całunem śniegu. Przez dwie tury wszyscy Poszukiwacze, niezależnie od Krainy, mogą się poruszać tylko o jeden Obszar. Potem nadchodzi odwilż i tę Kartę należy odłożyć.
-+Mefistofeles; 1; Natknąłeś się na Mefistofelesa, przebywającego z misją w tej Krainie. Jeżeli jesteś Zły, dodaje ci on 1 punkt Mocy, jeżeli jesteś Dobry lub Neutralny zmienia cię w Złego. Potem wraca do swego mrocznego królestwa odłoż jego Kartę.
+Done:
+1. Events
+    - Anioł; 1; Podczas snu odwiedział cię anioł. Jeżeli jesteś Dobry, zyskujesz 1 punkt Wytrzymałości, jeżeli jesteś Zły - tracisz 1 punkt Wytrzymałości. Neutralnych anioł ignoruje. Gdy się budzisz, anioła już nie ma - odłóż jego Kartę.
+    - Burza; 1; Nad tą Kariną (tylko Zewnętrzną lub Środkową) rozpętała się gwałtowna burza. Wszyscy Poszukiwacze tracą 1 turę. Potem niebo ropogadza się - odłóż tę Kartę.
+    - Diabeł; 1; Diabeł wpadł do ciebie z wizytą. Jeżeli jesteś Zły, otrzymujesz od niego 1 punkt Wytrzymałości, jeśli Dobry diabeł zabiera ci 1 punkt Wytrzymałości. Neutralnych diabeł ignoruje. Potem diabeł znika jak się pojawił. Odłoż tę Kartę.
+    - Diablik; 1; Spotkałeś diablika, uwielbiającego teleportować Poszukiwaczy. Rzuć kostką, żeby ustalić gdzie się znajdziesz:\n1. Skały\n2. Las\n3. Gospoda\n4. Ruiny\n5. Ukryta Dolina\n6. Przeklęta Polana\nGdy już zniknąłeś, diablik teleportuje siebie - odłoż jego Kartę.
+    - Dzień Duchów; 1; Nadszedł Dzień Duchów. Każdy Zły Poszukiwacz może wzywać duchy - rzucając kostką, żeby się przekonać, z jakim rezultatem:\n1. traci 1 turę\n2-4. odzyskuje 1 punkt Wytrzymałości\n5-6. zyskuje 1 Czar.\nPo wezwaniu duchów należy odłożyć tę Kartę.
+    - Księga Czarów; 1; Znalazłeś legendarną Księgę Czarów. Natychmiast uzyskujesz tyle Czarów, na ile pozwala ci twa Moc. Potem Księga znika - odłóż tę Kartę.
+    - Magiczny Cyklon; 1; Nad światem przeszedl potężny, magiczny cyklon. Wessał wszystkie Czary wszystkich Poszukiwaczy (niezależnie od tego, gdzie byli), potem rozpłynał się w mgiełkę. Odłoż tę Kartę i wszystkie Karty Czarów, będące w posiadaniu graczy.
+    - Mefistofeles; 1; Natknąłeś się na Mefistofelesa, przebywającego z misją w tej Krainie. Jeżeli jesteś Zły, dodaje ci on 1 punkt Mocy, jeżeli jesteś Dobry lub Neutralny zmienia cię w Złego. Potem wraca do swego mrocznego królestwa odłoż jego Kartę.
+    - Patrol; 1; Patrol wojska usiłuje wprowadzić ład i porządek. Żołnierze odsyłają cię natychmiast na Obszar, z którego rozpoczynałeś grę i zadowoleni odmaszerowują do koszar. Odłóż tę Kartę.
+    - Podatek; 1; Został nałożony podatek w wysokości 1 mieszka złota. Rzuć kością, żeby ustalić na kogo:\n1. na Dobrych\n2. na Złych\n3. na Neutralnych\n4. na mających złoto\n5. na tych w Zewnętrznej Krainie\n6. na tych w Środkowej Krainie. Nie posiadający złota są chłostani - tracą 1 punkt Wytrzymałości. Po ściągnięciu podatku Karta jest odkładana.
+    - Trzęsienie ziemi; 1; Krainą, w której się znajdujesz wstrząsa potężne trzęsienie ziemi. Rzuć kostką dla każdej Karty Przygód, która leży w tej Krainie i jest odkryta. Rezultat równy 1 lub 2 oczkom oznacza, że ta Karta wpada w powstałą w ziemi szczelinę należy ją odłożyć.
+    - Wulkan; 1; Grzmoty o kłęby dymu oznajmieją o erupcji wulkanu. Wszyscy Nieznajomi, znajdujący się w tej Krainie zostają pochłonięci przez lawę odłoż ich Karty.
+    - Zaraza; 1; Zaraza grasuje w tej Krainie (tylko Zewnętrznej lub Środkowej). Wszyscy znajdujący się w niej Poszukiwacze tracą 1 punkt Wytrzymałości. Potem zaraza znika odłoż tę Kartę.
+    - Zbójcy; 1; Napada cię banda zbójców i rabuje wszystkie twoje Przedmioty i całe złoto. Ukrywają się swój łup w Oazie (połóż tam Karty Przedmiotów i żetony złota), potem wycofują się do swej kryjówki. Odłóż tę Kartę.
+    - Zła ciemność; 1; Z Krainy Nicości nadciąga zła ciemność ogarniająca cały świat. Dobrzy i Neutralni Poszukiwacze tracą jedną turę. Później ciemność znika odłóż tę Kartę.
+
+TODO:
+1. Events
+    - Zamieć; 1; Nadeszła sroga zima i cały świat okrył się całunem śniegu. Przez dwie tury wszyscy Poszukiwacze, niezależnie od Krainy, mogą się poruszać tylko o jeden Obszar. Potem nadchodzi odwilż i tę Kartę należy odłożyć.
+    - Koniunkcja; 1; Gwiazdy ułożył się w tak szczególny sposób, że na czas jednej tury zostaje podwojona Moc wszystkich Duchów. Potem koniunkcja się kończy odłóż tę Kartę.
+    - Przekleństwo; 1; Przeklęta wiedźma - musisz ją zabrać jako swojego Przyjaciela. Wszyscy twoi Przyjaciele (z wyjątkiem Poltergeista) natychmiast cię opuszczają, odłoż ich Karty. Nie możesz zdobyć nowych Przyjaciół, aż się uwolnisz od wiedźmy, odwiedzając wiejskiego mędrca. Po wizycie u niego możesz odłożyć tę Kartę.
+    - Poltergeist; 1; Przyczepił się do ciebie złośliwy duch poltergeist. Musisz go zabrać jako Przyjaciela. Jego obecność przeszkadza ci tak bardzo, że możesz poruszczać się tylko jeden Obszar podczas tury. Możesz się go pozbyć przekraczając rzekę, w jakikolwiek sposób. Gdy to zrobisz, odłoż tę Kartę.
+2. Enemys
+    - Hobgoblin; 2; Brutalny hogoblin przyczaił się na tym Obszarze. Pozostanie tu, aż ktoś go pokona.
+    - Wąż; 1; Ogromny wąż postanowił zamieszkać w tym Obszarze. Pozostanie tu, aż ktoś go pokona.
+    - Wilk; 1; Wilk zamieszkał na tym Obszarze. Pozostanie tu, aż ktoś go pokona.
+    - Rzygacz; 1; Ohydny rzygacz sieje spustoszenie w tej okolicy. Pozostanie tu, aż ktoś go pokona.
+    - Lew; 1; Lew poluje tu na wszystko i wszystkich. Pozostanie na tym Obszarze, aż ktoś go pokona.
+    - Rozbójnik; 2; Groźnt rozbójnik zaczął grasować w okolicy. Pozostanie tu, aż ktoś go pokona.
+    - Goblin; 3; Od pewnego czasu ten Obszar jest pustoszony przez goblina, który pozostanie tu, aż go ktoś pokona.
+    - Niedzwiedź; 1; Wściekły niedzwiedź przywędrował tu nie wiadomo skąd. Pozostanie na tym Obszarze, aż ktoś go pokona.
+    - Dzik; 2; Ogromny dzik włóczy się po tej okolicy. Pozostanie tu, aż ktoś go pokona.
+    - Smok; 3; Od pewnego czasu tę okolicę terroryzuje smok, który pozostanie tu, aż ktoś go pokona.
+    - Ludojad; 2; Ludojad zdecydował się, że na tym Obszarze nie zabraknie mu pożywienia. Pozostanie tu, aż ktoś go pokona.
+    - Olbrzym; 1; Na tym Obszarze urządził sobie rezydencję okrutny olbrzym. Pozostanie tu, aż ktoś go pokona.
+    - Małpa; 1; Krwiożercza małpa sieje strach wśród miejscowej ludności. Pozostanie na tym Obszarze, aż ktoś ją pokona.
+    - Jaszczur; 1; W okolicy przyczaił się ogromny jaszczur. Pozostanie tu, aż ktoś go pokona.
+    - Golem; 1; (Przeciwko golemowi nie można używać Czarów, magicznych Przedmiotów ani broni.) Gigantyczny golem obraca ten Obszar w ruinę. Pozostanie tu, aż ktoś go pokona.
+    - Szalony wojownik; 1; Najemnego wojownika ogarnął szał bitewny. Pozostanie on na tym Obszarze, aż któs go pokona. Jednak nawet pokonany nie zginie, tylko przeniesie na Obszar odległy od obecnego o wynik rzutu kostką (zgodnie z ruchem wskazówek zegara).
+    - Sobowtór; 1; (Sobowtór zawsze posiada taką Siłę, z jaką walczy jego przeciwnik.) Na tym Obszarze pojawił sie potwór, zwany sobowtórem. Pozostanie tu, aż ktoś go pokona.

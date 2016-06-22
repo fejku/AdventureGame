@@ -6,14 +6,13 @@
 package adventuregame.board.fields.outer;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.explorer.Explorers;
 
 /**
  *
  * @author Fake
  */
-public class Puszcza extends OuterField {
+public class Puszcza extends ActionField {
     public Puszcza() {
         super("Puszcza");
     }

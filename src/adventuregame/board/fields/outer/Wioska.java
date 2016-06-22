@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
 import adventuregame.board.fields.outer.miasto.ICitizen;
 import adventuregame.board.fields.outer.miasto.Kowal;
 import adventuregame.board.fields.outer.miasto.Lekarz;
@@ -16,7 +15,7 @@ import adventuregame.explorer.Explorers;
  *
  * @author Fake
  */
-public class Wioska extends OuterField {
+public class Wioska extends ActionField {
 
     public Wioska() {
         super("Wioska");

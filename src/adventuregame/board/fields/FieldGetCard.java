@@ -14,27 +14,20 @@ import java.util.List;
  */
 public abstract class FieldGetCard extends Field {
 
-    private final int amountCardsOnField;
-    
-    public FieldGetCard(String name, Region region, int amountCardsOnField) {
-        super(name, region);
-        this.amountCardsOnField = amountCardsOnField;
+    public FieldGetCard(String name, Region region, int amountDrawingCards) {
+        super(name, region, amountDrawingCards);
     }
 
     @Override
     public void action(Board board, Explorers explorers) {
-        //Sprawdz ile kart dobrać
-        int amountMissingCards = amountCardsOnField - getCards().size();
-        //Karty jeszcze nie rozpatrzone np. Trzesienie ziemi nie może ich jeszcze zdjąć
-        List<ACard> newCards = board.getCardFromDeck(amountMissingCards);
         //Wszystkie karty na tym polu
         List<ACard> allCards = new ArrayList<>(); 
-		allCards.addAll(getCards());
-        allCards.addAll(newCards);
+        allCards.addAll(getCards());
+        allCards.addAll(getCardsDrawnThisTurn());
         
         Iterator<ACard> iteratorCards = allCards.iterator();
         while(iteratorCards.hasNext()) {
-        	ACard card = iteratorCards.next();
+            ACard card = iteratorCards.next();
             //Sprawdzenie czy są karty z priorytetem 1
             if (card.getPriority() == 1) {
                 //Akcja karty
