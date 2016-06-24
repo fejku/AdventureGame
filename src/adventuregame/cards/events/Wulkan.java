@@ -26,7 +26,7 @@ public class Wulkan extends Event {
         for(Field field : board.getFieldsByRegion(actualRegion))
             for(Iterator<ACard> iterator = field.getCards().iterator(); iterator.hasNext();) {
                 ACard card = iterator.next();
-                if (card.getPriority() == 4)
+                if ((card.getPriority() == 4) && (card.isOnField()))
                     iterator.remove();
             }
                 

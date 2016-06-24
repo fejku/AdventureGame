@@ -33,8 +33,6 @@ public abstract class Field {
     
     private List<ACard> cards;
     private int amountGoldOnField;
-    
-    private List<ACard> cardsDrawnThisTurn;
    
     public Field(String name, Region region, int amountDrawingCards) {
         this.name = name;
@@ -42,7 +40,6 @@ public abstract class Field {
         this.region = region;
         this.amountDrawingCards = amountDrawingCards;
         cards = new ArrayList<>();
-        cardsDrawnThisTurn = new ArrayList<>();
         amountGoldOnField = 0;
     }
     
@@ -61,11 +58,7 @@ public abstract class Field {
     public List<ACard> getCards() {
         return cards;
     }
-    
-    protected List<ACard> getCardsDrawnThisTurn() {
-        return cardsDrawnThisTurn;
-    }
-    
+      
     public Region getRegion() {
         return region;
     }
@@ -107,7 +100,7 @@ public abstract class Field {
         //Sprawdz ile kart dobrać
         int amountMissingCards = amountDrawingCards - getCards().size();
         //Karty jeszcze nie rozpatrzone np. Trzesienie ziemi nie może ich jeszcze zdjąć
-        cardsDrawnThisTurn = board.getCardFromDeck(amountMissingCards);
+        cards.addAll(board.getCardFromDeck(amountMissingCards));
     }
     
     public abstract void action(Board board, Explorers explorers);

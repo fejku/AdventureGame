@@ -28,8 +28,9 @@ public class TrzesienieZiemi extends Event {
         	Iterator<ACard> iteratorCard = field.getCards().iterator();
         	while (iteratorCard.hasNext()) {
         		ACard card = iteratorCard.next();
-        		if (board.getDice().throwDice() < 3)
-        			iteratorCard.remove();
+                        if (card.isOnField())
+                            if (board.getDice().throwDice() < 3)
+                                    iteratorCard.remove();
         	}
         }
     }

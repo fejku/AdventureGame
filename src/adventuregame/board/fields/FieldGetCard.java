@@ -20,41 +20,44 @@ public abstract class FieldGetCard extends Field {
 
     @Override
     public void action(Board board, Explorers explorers) {
-        //Wszystkie karty na tym polu
-        List<ACard> allCards = new ArrayList<>(); 
-        allCards.addAll(getCards());
-        allCards.addAll(getCardsDrawnThisTurn());
-        
-        Iterator<ACard> iteratorCards = allCards.iterator();
-        while(iteratorCards.hasNext()) {
-            ACard card = iteratorCards.next();
+        Iterator<ACard> eventCards = getCards().iterator();
+        while(eventCards.hasNext()) {
+            ACard eventCard = eventCards.next();
             //Sprawdzenie czy są karty z priorytetem 1
-            if (card.getPriority() == 1) {
+            if (eventCard.getPriority() == 1) {
                 //Akcja karty
-                card.action(board, explorers);
-	            //Czy karta zostaje na polu
-	            if (card.isStaying())
-	            	getCards().add(card);
-	            else
-	            	iteratorCards.remove();
+                eventCard.action(board, explorers);
+                    if (eventCard.isStaying())
+                        eventCard.setOnField(true);
+                    else
+                        eventCards.remove();
 	            //Czy karta kończy turę
-	            if (card.isInterupting()) { 
-	            	//Dodanie pozostałych nie rozpatrzonych kart do pola
-	            	getCards().clear();
-	            	getCards().addAll(allCards);
+	            if (eventCard.isInterupting()) { 
+                        //Zaznacz wszystkie karty jako położone na polu
+                        for (ACard cardsFromField : getCards())
+                            cardsFromField.setOnField(true);
+                        //Zakończ akcję pola
 	            	return;
 	            }
             }
         }
                
-        List<ACard> enemys = new ArrayList<>();        
-        for(ACard card : getCards()) {
-            if (card.getPriority() == 2)
-                enemys.add(card);
+        List<ACard> enemyCards = new ArrayList<>();
+        for (ACard enemyCard : getCards()) {
+            if (enemyCard.getPriority() == 2)
+                enemyCards.add(enemyCard);
         }
-        if (enemys.size() > 0) {
-            FightResult fr = explorers.getActualExplorer().fight(enemys);
-        }
+        if (enemyCards.size() > 0)
+            explorers.getActualExplorer().fight(enemyCards, explorers.getActualExplorer());
+        
+//        List<ACard> enemys = new ArrayList<>();        
+//        for(ACard card : getCards()) {
+//            if (card.getPriority() == 2)
+//                enemys.add(card);
+//        }
+//        if (enemys.size() > 0) {
+//            FightResult fr = explorers.getActualExplorer().fight(enemys);
+//        }
         
         //Sprawdzenie czy są karty z 2
         //Walka

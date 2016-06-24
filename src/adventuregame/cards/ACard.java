@@ -14,12 +14,14 @@ public abstract class ACard implements ICard {
     private final boolean stay;
     
     private boolean interrup;
+    private boolean onField;
     
     public ACard(String name, int priority, boolean interrupt, boolean stay) {
         this.name = name;
         this.priority = priority;
         this.interrup = interrupt;
         this.stay = stay;
+        this.onField = false;
     }
     
     @Override
@@ -53,4 +55,13 @@ public abstract class ACard implements ICard {
     public void setInterrup(boolean interrupt) {
         this.interrup = interrupt;
     }
+    
+    public boolean isOnField() {
+        return onField;
+    }
+
+    public void setOnField(boolean onField) {
+        this.onField = onField;
+    }
+    
 }

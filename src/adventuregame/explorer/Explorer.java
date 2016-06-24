@@ -9,6 +9,8 @@ import adventuregame.board.fields.Field;
 import adventuregame.board.fields.Field.Region;
 import adventuregame.cards.ACard;
 import adventuregame.cards.enemy.Enemy;
+import adventuregame.cards.enemy.strength.EnemyStrenght;
+import adventuregame.cards.friend.Friend;
 import adventuregame.cards.item.Item;
 import adventuregame.cards.item.weapon.Miecz;
 import adventuregame.cards.item.weapon.Topor;
@@ -40,6 +42,7 @@ public abstract class Explorer {
     private List<Item> items;
     private List<Enemy> defeatedCreatures;
     private List<Spell> spells;
+    private List<Friend> friends;
     
     private List<Weapon> equippedWeapons;
 
@@ -441,7 +444,49 @@ items.add(new Topor());
     	}
     }
     
-    public FightResult fight(List<ACard> enemys) {
+    public FightResult fight(List<ACard> enemyCards, Explorer explorer) {
+        int enemyStrengthSum = 0;
+        int explorerStrength;
+        EnemyStrenght enemy;
+        
+        for (int i = 0; i < enemyCards.size(); i++) {
+            enemy = (EnemyStrenght)enemyCards.get(i);
+            enemyStrengthSum += enemy.getPower();
+            //TODO: Jezeli jest smok i cos jeszcze to ma dodac 3
+            //TODO: Jezeli jeden z potworow nie pozwala na dodatkowe staty np tylko od przyjaciol to ma nie dodawac od przyjaciol w ogole
+            explorerStrength = explorer.getStrength() + enemy.getExplorerAdditionalStats(explorer);
+        }
+
+                        //getLowestAdditionalStatsFromAllOfEnemys
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public int getStrengthFromEquippableItems() {
+        int strength = 0;
+        
+        for (Weapon weapon : equippedWeapons)
+            strength += weapon.getStrengthModifier();
+        
+        return strength;
+    }
+    
+    public int getStrengthFromNonEquippableItems() {
+        int strength = 0;
+                
+        for (Item item : items) {
+            if (!(item instanceof Weapon))
+                strength += item.getStrengthModifier();
+        }
+        
+        return strength;
+    }
+    
+    public int getStrengthFromFriends() {
+        int strength = 0;
+        
+        for (Friend friend : friends)
+            strength += friend.getStrengthModifier();
+        
+        return strength;
     }
 }
