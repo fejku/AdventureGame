@@ -33,6 +33,9 @@ public abstract class Field {
     
     private List<ACard> cards;
     private int amountGoldOnField;
+    private boolean strengthFromFriends;
+    private boolean strengthFromEquippableItems;
+    private boolean strengthFromNonEquippableItems;
    
     public Field(String name, Region region, int amountDrawingCards) {
         this.name = name;
@@ -41,6 +44,9 @@ public abstract class Field {
         this.amountDrawingCards = amountDrawingCards;
         cards = new ArrayList<>();
         amountGoldOnField = 0;
+        strengthFromFriends = true;
+        strengthFromEquippableItems = true;
+        strengthFromNonEquippableItems = true;
     }
     
     public String getName() {
@@ -70,6 +76,30 @@ public abstract class Field {
     public void setAmountGoldOnField(int amount) {
     	this.amountGoldOnField = amount;
     }
+
+    public boolean isStrengthFromFriends() {
+        return strengthFromFriends;
+    }
+
+    public void setStrengthFromFriends(boolean strengthFromFriends) {
+        this.strengthFromFriends = strengthFromFriends;
+    }
+
+    public boolean isStrengthFromEquippableItems() {
+        return strengthFromEquippableItems;
+    }
+
+    public void setStrengthFromEquippableItems(boolean strengthFromEquippableItems) {
+        this.strengthFromEquippableItems = strengthFromEquippableItems;
+    }
+
+    public boolean isStrengthFromNonEquippableItems() {
+        return strengthFromNonEquippableItems;
+    }
+
+    public void setStrengthFromNonEquippableItems(boolean strengthFromNonEquippableItems) {
+        this.strengthFromNonEquippableItems = strengthFromNonEquippableItems;
+    }
     
     public void removeCardFromField(ACard card) {
     	cards.remove(card);
@@ -90,7 +120,7 @@ public abstract class Field {
     public void fightWithoutCard(Board board, Explorer explorer, FightType type, int amount) {
         FightResult fightResult;
         
-        fightResult = explorer.fight(board, type, amount);
+        fightResult = explorer.fightWithoutCard(board, type, amount);
         if (fightResult == FightResult.LOSE) {
             explorer.loseLife(board);
         }

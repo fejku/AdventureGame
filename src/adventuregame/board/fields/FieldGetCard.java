@@ -2,6 +2,7 @@ package adventuregame.board.fields;
 
 import adventuregame.board.Board;
 import adventuregame.cards.ACard;
+import adventuregame.cards.enemy.Enemy;
 import adventuregame.explorer.Explorers;
 import adventuregame.explorer.FightResult;
 import java.util.ArrayList;
@@ -42,14 +43,45 @@ public abstract class FieldGetCard extends Field {
             }
         }
                
-        List<ACard> enemyCards = new ArrayList<>();
+        List<Enemy> enemyCards = new ArrayList<>();
         for (ACard enemyCard : getCards()) {
-            if (enemyCard.getPriority() == 2)
-                enemyCards.add(enemyCard);
+            if (enemyCard.getPriority() == 2) {
+                enemyCards.add((Enemy)enemyCard);
+                ((Enemy)enemyCard).writeCardText(board.getDialog());
+            }
         }
-        if (enemyCards.size() > 0)
-            explorers.getActualExplorer().fight(enemyCards, explorers.getActualExplorer());
-        
+        if (!enemyCards.isEmpty()) {
+            switch (explorers.getActualExplorer().fight(board, explorers.getActualExplorer(), enemyCards,
+                    isStrengthFromFriends(), isStrengthFromEquippableItems(), isStrengthFromNonEquippableItems())) {
+                case WIN:
+                    Iterator<ACard> cardsOnField = getCards().iterator();
+                    while (cardsOnField.hasNext()) {
+                        ACard cardOnField = cardsOnField.next();
+                        if (cardOnField.getPriority() == 2) {
+                            explorers.getActualExplorer().gainTrophy((Enemy)cardOnField);
+                            cardsOnField.remove();
+                        }
+                    }
+                    break;
+                case TIE:
+                    //Połóż pozostałe karty na polu
+                    for (ACard cardsFromField : getCards())
+                        cardsFromField.setOnField(true);
+                    //koniec tury
+                    board.setGameState(Board.GameState.TURN_END);                    
+                    return;
+                default:
+                    //Połóż pozostałe karty na polu
+                    for (ACard cardsFromField : getCards())
+                        cardsFromField.setOnField(true);                    
+                    //TODO: if armor throw for armor
+                    //traci 1 punkt życia
+                    explorers.getActualExplorer().loseLife(board);                    
+                    //koniec tury
+                    board.setGameState(Board.GameState.TURN_END);
+                    return;
+            }
+        }
 //        List<ACard> enemys = new ArrayList<>();        
 //        for(ACard card : getCards()) {
 //            if (card.getPriority() == 2)

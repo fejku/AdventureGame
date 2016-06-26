@@ -21,7 +21,7 @@ public class Explorers {
         this.allExplorers = initExplorers();
     }
     
-    public List<Explorer> initExplorers() {
+    private List<Explorer> initExplorers() {
         List<Explorer> explorers = new ArrayList<>();
         explorers.add(new Test("Test1", 2, 2, Field.GOSPODA, ExplorerCharacter.DOBRY));
         explorers.add(new Test("Test2", 2, 2, Field.GOSPODA, ExplorerCharacter.ZLY));

@@ -7,7 +7,7 @@ import adventuregame.explorer.Explorers;
 public class Tarcza extends Item {
 
     public Tarcza() {
-        super("Tarcza", 4, 3);
+        super("Tarcza", 4, 0, 0, 3);
     }
 
     @Override

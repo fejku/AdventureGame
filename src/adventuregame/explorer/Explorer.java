@@ -43,6 +43,7 @@ public abstract class Explorer {
     private List<Enemy> defeatedCreatures;
     private List<Spell> spells;
     private List<Friend> friends;
+    private List<Enemy> trophys;
     
     private List<Weapon> equippedWeapons;
 
@@ -66,6 +67,8 @@ public abstract class Explorer {
         defeatedCreatures = new ArrayList<>();
         items = new ArrayList<>();
         spells = new ArrayList<>();
+        friends = new ArrayList<>();
+        trophys = new ArrayList<>();
         
         equippedWeapons = new ArrayList<>();
         
@@ -311,27 +314,22 @@ items.add(new Topor());
         return craftModfier;
     }
     
-    public FightResult fight(Board board, FightType type, int amount) {
-        if (type == FightType.STRENGTH) {
-            int myStrength = strength + getStrengthModifiers() + board.getDice().throwDice();
-            int foeStrength = amount + board.getDice().throwDice();
-            
-            if (myStrength > foeStrength)
-                return FightResult.WIN;
-            else if (myStrength < foeStrength)
-                return FightResult.LOSE;
-            else
-                return FightResult.TIE;
+    public FightResult getFightResult(Board board, int explorerPower, int enemyPower) {
+        int explorerWholePower = explorerPower + board.getDice().throwDice();
+        int enemyWholePower = enemyPower + board.getDice().throwDice();
+        
+        board.getDialog().message("Twoja siła po rzucie kostką to: " + explorerWholePower);
+        board.getDialog().message("Siła twojego przeciwnika po rzucie kostką to: " + enemyWholePower);
+
+        if (explorerWholePower > enemyWholePower) {
+            board.getDialog().message("Zwyciężyłeś");
+            return FightResult.WIN;
+        } else if (explorerWholePower < enemyWholePower) {
+            board.getDialog().message("Przegrałeś");
+            return FightResult.LOSE;
         } else {
-            int myCraft = craft + getCraftModifiers() + board.getDice().throwDice();
-            int foeCraft = amount + board.getDice().throwDice();
-            
-            if (myCraft > foeCraft)
-                return FightResult.WIN;
-            else if (myCraft < foeCraft)
-                return FightResult.LOSE;
-            else
-                return FightResult.TIE;
+            board.getDialog().message("Remis");
+            return FightResult.TIE;
         }
     }
     
@@ -344,7 +342,7 @@ items.add(new Topor());
     }
     
     public boolean isAnotherSpellAvailable() {
-        if ((craft == 3) && (spells.size() == 0))
+        if ((craft == 3) && (spells.isEmpty()))
             return true;
         else if (((craft > 3) && (craft < 6)) && (spells.size() < 2))
             return true;
@@ -354,9 +352,6 @@ items.add(new Topor());
             return false;
     }
     
-    /**
-     * 
-     */
     public void gainSpell(Board board) {
         if (isAnotherSpellAvailable())
             spells.add(board.getSpellFromDeck());
@@ -444,49 +439,114 @@ items.add(new Topor());
     	}
     }
     
-    public FightResult fight(List<ACard> enemyCards, Explorer explorer) {
+    public FightResult fight(Board board, Explorer explorer, List<Enemy> enemyCards, boolean strengthFromFriends, 
+            boolean strengthFromEquippableItems, boolean strengthFromNonEquippableItems) {
+        
+        boolean strFromFriends = true, strFromEquippableItems = true, strFromNonEquippableItems = true;
         int enemyStrengthSum = 0;
-        int explorerStrength;
+        int explorerStrength = 0;
         EnemyStrenght enemy;
         
         for (int i = 0; i < enemyCards.size(); i++) {
             enemy = (EnemyStrenght)enemyCards.get(i);
+            //Sprawdzenie czy jakiś potwór blokuje dodatkową siłę
+            strFromFriends &= enemy.isStrengthFromFriends();
+            strFromEquippableItems &= enemy.isStrengthFromEquippableItems();
+            strFromNonEquippableItems &= enemy.isStrengthFromNonEquippableItems();
+            //Suma siły przeciwników
             enemyStrengthSum += enemy.getPower();
-            //TODO: Jezeli jest smok i cos jeszcze to ma dodac 3
-            //TODO: Jezeli jeden z potworow nie pozwala na dodatkowe staty np tylko od przyjaciol to ma nie dodawac od przyjaciol w ogole
-            explorerStrength = explorer.getStrength() + enemy.getExplorerAdditionalStats(explorer);
-        }
+        }       
 
-                        //getLowestAdditionalStatsFromAllOfEnemys
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(Enemy enemyCard : enemyCards)
+            board.getDialog().message("Przeciwnik " + enemyCard.getName() + " siła: " + enemyCard.getPower());
+        if (enemyCards.size() > 1)
+            board.getDialog().message("Łączna siła przeciwników to : " + enemyStrengthSum);
+        
+        //Sprawdzenie czy pole blokuje dodatkową siłę
+        strFromFriends &= strengthFromFriends;
+        strFromEquippableItems &= strengthFromEquippableItems;
+        strFromNonEquippableItems &= strengthFromNonEquippableItems;
+        
+        for (int i = 0; i < enemyCards.size(); i++) {
+            enemy = (EnemyStrenght)enemyCards.get(i);
+            //TODO: Jeszcze nie zrobione ale na smoka działa swieta lanca wiec bedzie dodawac +3 do walki ze wszystkimi
+            //dlatego musi byc sprawdzanie wszystkich potworow a nie od razu w explorerze
+            int tmpExplorerStrength = enemy.getExplorerAdditionalStats(explorer, strFromFriends, strFromEquippableItems, strFromNonEquippableItems);
+            //Najwieksza dodatkowa siła
+            if (tmpExplorerStrength > explorerStrength)
+                explorerStrength = tmpExplorerStrength;
+        }
+        
+        explorerStrength += strength;
+        
+        board.getDialog().message("Twoja siła to :" + explorerStrength);
+
+        return getFightResult(board, explorerStrength, enemyStrengthSum);
+    }
+    
+    public FightResult fightWithoutCard(Board board, FightType fightType, int enemyPower) {
+        int explorerWholePower = board.getDice().throwDice();
+        int enemyWholePower = enemyPower + board.getDice().throwDice();
+        if (fightType == FightType.STRENGTH) {
+            explorerWholePower += strength + getStrengthFromFriends() + getStrengthFromEquippableItems() + getStrengthFromNonEquippableItems();
+            
+            return getFightResult(board, explorerWholePower, enemyWholePower);
+        } else {
+            explorerWholePower += craft + getCraftFromFriends() + getCraftFromItems();
+            
+            return getFightResult(board, explorerWholePower, enemyWholePower);
+        }
     }
     
     public int getStrengthFromEquippableItems() {
-        int strength = 0;
+        int explorerStrength = 0;
         
         for (Weapon weapon : equippedWeapons)
-            strength += weapon.getStrengthModifier();
+            explorerStrength += weapon.getStrengthModifier();
         
-        return strength;
+        return explorerStrength;
     }
     
     public int getStrengthFromNonEquippableItems() {
-        int strength = 0;
+        int explorerStrength = 0;
                 
         for (Item item : items) {
             if (!(item instanceof Weapon))
-                strength += item.getStrengthModifier();
+                explorerStrength += item.getStrengthModifier();
         }
         
-        return strength;
+        return explorerStrength;
     }
     
+    public int getCraftFromItems() {
+        int explorerCraft = 0;
+                
+        for (Item item : items) {
+            explorerCraft += item.getCraftModifier();
+        }
+        
+        return explorerCraft;
+    }    
+    
     public int getStrengthFromFriends() {
-        int strength = 0;
+        int explorerStrength = 0;
         
         for (Friend friend : friends)
-            strength += friend.getStrengthModifier();
+            explorerStrength += friend.getStrengthModifier();
         
-        return strength;
+        return explorerStrength;
+    }
+    
+    public int getCraftFromFriends() {
+        int explorerCraft = 0;
+        
+        for (Friend friend : friends)
+            explorerCraft += friend.getCraftModifier();
+        
+        return explorerCraft;
+    }
+    
+    public void gainTrophy(Enemy enemy) {
+        trophys.add(enemy);
     }
 }

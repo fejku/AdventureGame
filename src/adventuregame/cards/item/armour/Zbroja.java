@@ -7,7 +7,7 @@ import adventuregame.explorer.Explorers;
 public class Zbroja extends Item {
 
     public Zbroja() {
-        super("Zbroja", 4, 3);
+        super("Zbroja", 4, 0, 0, 3);
     }
 
     @Override

@@ -9,6 +9,6 @@ import adventuregame.board.fields.FieldGetCard;
 public class Rowniny extends FieldGetCard {
 
 	public Rowniny() {
-		super("Równiny", Region.OUTER, 1);
+		super("Równiny", Region.OUTER, 2);
 	}
 }

@@ -8,13 +8,15 @@ import adventuregame.explorer.Explorers;
  *
  * @author Fake
  */
-public class Friend extends ACard {
+public abstract class Friend extends ACard {
 
     private int strengthModifier;
+    private int craftModifier;
     
-    public Friend(String name, boolean interrupt, boolean stay, int strengthModifier) {
+    public Friend(String name, boolean interrupt, boolean stay, int strengthModifier, int craftModifier) {
         super(name, 5, interrupt, stay);
         this.strengthModifier = strengthModifier;
+        this.craftModifier = craftModifier;
     }
 
     @Override
@@ -24,6 +26,10 @@ public class Friend extends ACard {
     
     public int getStrengthModifier() {
         return strengthModifier;
+    }
+
+    public int getCraftModifier() {
+        return craftModifier;
     }
 
 }

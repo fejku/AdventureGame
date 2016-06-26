@@ -19,6 +19,7 @@ import adventuregame.board.fields.outer.Straznik;
 import adventuregame.board.fields.outer.Wioska;
 import adventuregame.board.fields.outer.Wzgorza;
 import adventuregame.cards.ACard;
+import adventuregame.cards.enemy.strength.Waz;
 import adventuregame.cards.events.Patrol;
 import adventuregame.cards.events.Wulkan;
 import adventuregame.cards.events.ZlaCiemnosc;
@@ -156,6 +157,13 @@ public class Board {
         return moves;
     }
     
+    public int getNeighbourField(int fieldNumber, int direction, int fieldsAmount) {
+        int neighbourNumber = fieldNumber;
+        for (int i = 0; i < fieldsAmount; i++)
+            neighbourNumber = fields.get(fieldNumber).getNeighbor(direction);
+        return neighbourNumber;
+    }
+    
     public void fieldAction(Explorers explorers) {
         fields.get(explorers.getActualExplorer().getActualPosition()).action(this, explorers);
     }
@@ -167,6 +175,8 @@ public class Board {
     public List<ACard> initCards() {   
         List<ACard> cards = new ArrayList<>();
         
+        cards.add(new Waz());
+        cards.add(new Waz());
         cards.add(new Wulkan());
         cards.add(new Magik());        
         cards.add(new Patrol());

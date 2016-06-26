@@ -11,12 +11,12 @@ public abstract class Weapon extends Item {
     private final WeaponType weaponType; 
 
     public Weapon(String name, int amountInDeck, int strengthModifier, WeaponType weaponType) {
-        super(name, amountInDeck, strengthModifier);
+        super(name, amountInDeck, strengthModifier, 0);
         this.weaponType = weaponType;
     }
 
     public Weapon(String name, int amountInDeck, int strengthModifier, WeaponType weaponType, int costInTown) {
-        super(name, amountInDeck, strengthModifier, costInTown);
+        super(name, amountInDeck, strengthModifier, 0, costInTown);
         this.weaponType = weaponType;
     }
 
