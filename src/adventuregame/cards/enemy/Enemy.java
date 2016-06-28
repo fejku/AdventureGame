@@ -14,14 +14,14 @@ public abstract class Enemy extends ACard {
     
     public enum EnemyType {DEMON, OZYWIENIEC, POTWOR, DUCH, SMOK, KULT, ZWIERZE, OBCY, UNIKAT}
         
-    private final int power;
-    private final EnemyType enemyType;
+    private int power;
+    private EnemyType enemyType;
     private final boolean trophy;
     private final int amountInDeck;
     
-    public Enemy(String name, int priority, int strength, EnemyType enemyType, int amountInDeck, boolean trophy) {
+    public Enemy(String name, int priority, int power, EnemyType enemyType, int amountInDeck, boolean trophy) {
         super(name, priority, false, false);
-        this.power = strength;
+        this.power = power;
         this.enemyType = enemyType;
         this.trophy = trophy;
         this.amountInDeck = amountInDeck;
@@ -43,8 +43,8 @@ public abstract class Enemy extends ACard {
     public void mainAction(Board board, Explorers explorers) {};
     
     
-    public void actionBeforeFight() {
-        
+    public void actionBeforeFight(Board board, Explorers explorers) {
+        writeCardText(board.getDialog());
     }
     
     public void actionAfterLose(Board board, Explorers explorers) {
@@ -53,4 +53,8 @@ public abstract class Enemy extends ACard {
     }
     
     public abstract void writeCardText(IDialog dialog);
+    
+    protected void setPower(int power) {
+        this.power = power;
+    }
 }

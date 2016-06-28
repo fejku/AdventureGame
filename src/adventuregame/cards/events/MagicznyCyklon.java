@@ -1,8 +1,6 @@
 package adventuregame.cards.events;
 
 import adventuregame.board.Board;
-import adventuregame.board.fields.Field;
-import adventuregame.cards.ACard;
 import adventuregame.explorer.Explorer;
 import adventuregame.explorer.Explorers;
 
@@ -25,13 +23,4 @@ public class MagicznyCyklon extends Event {
             explorer.getSpells().clear();
         }
     }
-    
-    @Override
-    public void afterAction(Board board, Explorers explorers) {
-//        int actualPosition = explorers.getActualExplorer().getActualPosition();
-//        Field actualField = board.getField(actualPosition);
-//        
-//        if (actualField.getCards().remove(this))
-//            board.getUsedAdventureCards().add(this);
-    }    
 }

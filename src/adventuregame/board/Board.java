@@ -19,7 +19,9 @@ import adventuregame.board.fields.outer.Straznik;
 import adventuregame.board.fields.outer.Wioska;
 import adventuregame.board.fields.outer.Wzgorza;
 import adventuregame.cards.ACard;
+import adventuregame.cards.enemy.strength.Sobowtor;
 import adventuregame.cards.enemy.strength.Waz;
+import adventuregame.cards.events.Event;
 import adventuregame.cards.events.Patrol;
 import adventuregame.cards.events.Wulkan;
 import adventuregame.cards.events.ZlaCiemnosc;
@@ -55,6 +57,7 @@ public class Board {
     private final Dice dice;
     private final IDialog dialog;
     private GameState gameState;
+    private List<Event> onGoingEvents;
             
     public Board(IDialog dialog, Dice dice) {
         this.dialog = dialog;
@@ -66,6 +69,7 @@ public class Board {
         this.usedAdventureCards = new ArrayList<>();
         this.spells = initSpells();
         this.usedSpells = new ArrayList<>();
+        this.onGoingEvents = new ArrayList<>();
         equipments = new Equipments();
     }
     
@@ -175,6 +179,7 @@ public class Board {
     public List<ACard> initCards() {   
         List<ACard> cards = new ArrayList<>();
         
+        cards.add(new Sobowtor());
         cards.add(new Waz());
         cards.add(new Waz());
         cards.add(new Wulkan());
@@ -247,4 +252,9 @@ public class Board {
         
         return fieldsInRegion;
     }
+
+    public List<Event> getOnGoingEvents() {
+        return onGoingEvents;
+    }
+    
 }

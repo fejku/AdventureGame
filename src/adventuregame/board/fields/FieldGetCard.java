@@ -47,7 +47,7 @@ public abstract class FieldGetCard extends Field {
         for (ACard enemyCard : getCards()) {
             if (enemyCard.getPriority() == 2) {
                 enemyCards.add((Enemy)enemyCard);
-                ((Enemy)enemyCard).writeCardText(board.getDialog());
+                ((Enemy)enemyCard).actionBeforeFight(board, explorers);
             }
         }
         if (!enemyCards.isEmpty()) {

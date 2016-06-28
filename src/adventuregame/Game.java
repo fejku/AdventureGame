@@ -72,6 +72,8 @@ public class Game {
                 	board.setGameState(GameState.TURN_END);
                 break;
             case TURN_END:
+                //Sprawdzenie czy zakończyć któryś z eventOnGoing
+                
                 explorers.nextExplorerTurn();
                 board.getDialog().message("************* KONIEC TURY *******************");  
                 board.setGameState(GameState.CHECK_LOST_TURN);
